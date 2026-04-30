@@ -1,0 +1,299 @@
+/* ========================================
+   DOCUMENTS PAGE
+   ======================================== */
+.documents-section {
+    padding: 50px 60px 80px; /* Уменьшили верхний отступ с 80px до 50px */
+    background: var(--white, #fff);
+    margin-top: 0;
+}
+
+.documents-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--primary-purple, #5B3A99);
+    margin-bottom: 50px; /* Уменьшили с 70px до 50px */
+    text-align: left;
+}
+
+.documents-title::after {
+    content: '';
+    display: block;
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        var(--accent-teal), 
+        var(--primary-purple), 
+        var(--accent-teal));
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+    margin: 20px 0 0 0;
+}
+
+@keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ========================================
+   DOCUMENTS CATEGORY
+   ======================================== */
+.documents-category {
+    margin-bottom: 60px;
+}
+
+.documents-category-title {
+    font-size: 35px;
+    font-weight: 700;
+    color: var(--primary-purple);
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* ========================================
+   DOCUMENTS GRID
+   ======================================== */
+.documents-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.document-card {
+    background: #f9f9f9;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    width: 350px;
+}
+
+.document-card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 15px 45px rgba(91, 58, 153, 0.3);
+}
+
+.document-image {
+    width: 100%;
+    height: 500px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-bottom: 4px solid var(--accent-teal);
+}
+
+.document-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.document-card:hover .document-image img {
+    transform: scale(1.08);
+}
+
+.document-name {
+    display: none;
+}
+
+/* ========================================
+   MODAL - крестик справа + красивые кнопки
+   ======================================== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.92);
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    z-index: 10001;
+}
+
+/* Крестик справа сверху */
+.modal-close {
+    position: fixed; /* Изменили с absolute на fixed */
+    top: 30px; /* Отступ сверху */
+    right: 30px; /* Отступ справа */
+    background: white;
+    border: none;
+    font-size: 45px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--primary-purple);
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    z-index: 10002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    background: var(--accent-teal);
+    color: white;
+    transform: rotate(90deg) scale(1.15);
+    box-shadow: 0 8px 30px rgba(77, 165, 163, 0.6);
+}
+
+.modal-image-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
+}
+
+.modal-image {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+/* Красивые кнопки навигации */
+.modal-nav {
+    position: absolute;
+    background: linear-gradient(135deg, rgba(91, 58, 153, 0.9), rgba(77, 165, 163, 0.9));
+    border: 3px solid white;
+    color: white;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.modal-nav:hover {
+    background: linear-gradient(135deg, var(--accent-teal), var(--primary-purple));
+    transform: scale(1.2);
+    box-shadow: 0 10px 35px rgba(77, 165, 163, 0.7);
+}
+
+.modal-nav:active {
+    transform: scale(1.1);
+}
+
+.modal-prev {
+    left: -100px;
+}
+
+.modal-next {
+    right: -100px;
+}
+
+.modal-counter {
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 8px;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+    background: rgba(91, 58, 153, 0.8);
+    padding: 10px 25px;
+    border-radius: 25px;
+    display: inline-block;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 1200px) {
+    .documents-grid {
+        gap: 40px;
+    }
+    
+    .document-card {
+        width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .documents-section {
+        padding: 40px 40px 60px;
+    }
+    
+    .documents-title {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+    
+    .documents-category-title {
+        font-size: 24px;
+    }
+    
+    .document-card {
+        width: 100%;
+    }
+    
+    .document-image {
+        height: 400px;
+    }
+    
+    .modal-close {
+        top: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+        font-size: 38px;
+    }
+    
+    .modal-nav {
+        width: 55px;
+        height: 55px;
+        font-size: 40px;
+    }
+    
+    .modal-prev {
+        left: 10px;
+    }
+    
+    .modal-next {
+        right: 10px;
+    }
+    
+    .modal-counter {
+        font-size: 18px;
+        padding: 8px 20px;
+    }
+}

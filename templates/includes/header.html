@@ -1,0 +1,75 @@
+{% load static %}
+<header class="main-header">
+    <div class="header-container">
+        <div class="header-item logo-section logo-no-border">
+            <a href="/" class="logo-link">
+                <img src="{% static 'img/logo.svg' %}" alt="Pascal Medical" class="logo">
+            </a>
+        </div>
+        
+        <nav class="main-nav">
+            <div class="header-item nav-item dropdown">
+                <a href="/about/" class="nav-link">О компании</a>
+                <div class="dropdown-menu">
+                    <a href="/documents/" class="dropdown-item">Документы</a>
+                    <a href="/news/" class="dropdown-item">Новости</a>
+                    <a href="/vacancies/" class="dropdown-item">Вакансии</a>
+                    <a href="/gallery/" class="dropdown-item">Фотогалерея</a>
+                </div>
+            </div>
+            
+            <div class="header-item nav-item dropdown">
+                <a href="/#services" class="nav-link scroll-link">Услуги</a>
+                <div class="dropdown-menu">
+                    <a href="/service/?type=manufacturing" class="dropdown-item">Изготовление пластиковых изделий</a>
+                    <a href="/service/?type=assembly" class="dropdown-item">Сборка</a>
+                    <a href="/service/?type=packaging" class="dropdown-item">Упаковка</a>
+                    <a href="/service/?type=sterilization" class="dropdown-item">Стерилизация</a>
+                </div>
+            </div>
+            
+            <div class="header-item nav-item dropdown">
+                <a href="/#products" class="nav-link scroll-link">Продукция</a>
+                <div class="dropdown-menu">
+                    <a href="/product-category/?cat=1" class="dropdown-item">Шприцы инъекционные однократного применения</a>
+                    <a href="/product-category/?cat=2" class="dropdown-item">Шприцы с двумя иглами</a>
+                    <a href="/product-category/?cat=3" class="dropdown-item">Шприцы для инсулина</a>
+                    <a href="/product-category/?cat=4" class="dropdown-item">Инфузионные и трансфузионные системы</a>
+                    <a href="/product-category/?cat=5" class="dropdown-item">Иглы инъекционные стерильные</a>
+                    <a href="/product-category/?cat=6" class="dropdown-item">Иглы инъекционные нестерильные</a>
+                </div>
+            </div>
+            
+            <div class="header-item nav-item">
+                <a href="/instructions/" class="nav-link nav-link-multiline">Информационные<br>материалы</a>
+            </div>
+            
+            <div class="header-item nav-item">
+                <a href="/contacts/" class="nav-link">Контакты</a>
+            </div>
+        </nav>
+        
+        <div class="header-actions">
+            <div class="header-item search-wrapper">
+                <button class="search-btn" id="searchBtn">
+                    <img src="{% static 'img/лупа.png' %}" alt="Поиск" class="search-icon">
+                </button>
+            </div>
+            <div class="header-item phone-section">
+                <img src="{% static 'img/трубка.png' %}" alt="Телефон" class="phone-icon">
+                <button class="phone-link" id="phoneBtn" data-phone="+74951502080">+7 495 150 20 80</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Search Overlay -->
+<div class="search-overlay" id="searchOverlay">
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Поиск по сайту..." id="searchInput">
+        <button class="search-close" id="searchClose">
+            <span>&times;</span>
+        </button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+</div>

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Контакты - Pascal Medical{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/contacts.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- BREADCRUMBS -->
+<div class="breadcrumbs-wrapper">
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}" class="breadcrumb-item">Главная</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-item active">Контакты</span>
+        </nav>
+    </div>
+</div>
+
+<!-- CONTACTS SECTION -->
+<section class="contacts-section">
+    <div class="container">
+        <h1 class="contacts-title">Контакты</h1>
+        
+        <div class="contacts-main-wrapper">
+            <!-- Левая часть: блоки + карта -->
+            <div class="contacts-left-column">
+                <div class="contacts-blocks-row">
+                    <div class="contact-block">
+                        <h3 class="contact-block-title">Производство</h3>
+                        <p class="contact-text">141981, Россия, Московская область, г. Дубна, ул. Электронная, д. 8, к. 1</p>
+                        <p class="contact-text">Тел. <button class="contact-phone-btn" data-phone="+74951502080">+7 495 150 20 80</button></p>
+                    </div>
+
+                    <div class="contact-block">
+                        <h3 class="contact-block-title">Реквизиты</h3>
+                        <p class="contact-text"><strong>ООО «ПАСКАЛЬ МЕДИКАЛ»</strong></p>
+                        <p class="contact-text">ИНН/КПП: 7705243630/01001001</p>
+                        <p class="contact-text">ОГРН: 1147748142299</p>
+                        <p class="contact-text">
+                            <a href="mailto:info@pascal-med.ru" class="contact-link">info@pascal-med.ru</a>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="contacts-map">
+                    <div id="map"></div>
+                </div>
+            </div>
+            
+            <!-- Правая часть: Форма обратной связи -->
+            <div class="contacts-right-column">
+                <div class="feedback-form-card">
+                    <h2 class="feedback-title">ОБРАТНАЯ СВЯЗЬ</h2>
+                    <form class="feedback-form" id="feedbackForm">
+                        <div class="form-group">
+                            <label for="email">Адрес электронной почты</label>
+                            <input type="email" id="email" name="email" required placeholder="example@mail.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Как к вам обращаться</label>
+                            <input type="text" id="name" name="name" required placeholder="Ваше имя">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Номер телефона</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="+7 (___) ___-__-__">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Содержание обращения</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Ваше сообщение..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+<script src="{% static 'js/contacts.js' %}"></script>
+{% endblock %}

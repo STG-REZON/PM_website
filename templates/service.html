@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуги - Pascal Medical</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/service.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+{% include 'includes/header.html' %}
+
+<div class="search-overlay" id="searchOverlay">
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Поиск по сайту..." id="searchInput">
+        <button class="search-close" id="searchClose">
+            <span>&times;</span>
+        </button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+</div>
+
+<div class="toast" id="toast">Номер скопирован!</div>
+
+<!-- BREADCRUMBS -->
+<div class="breadcrumbs-wrapper">
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}" class="breadcrumb-item">Главная</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-item active" id="serviceName">Услуга</span>
+        </nav>
+    </div>
+</div>
+
+<!-- SERVICE CONTENT -->
+<section class="service-page">
+    <div class="container">
+        <h1 class="service-title" id="serviceTitle">Название услуги</h1>
+        
+        <div class="service-content">
+            <!-- Левая часть: Слайдшоу -->
+            <div class="service-slider">
+                <div class="slider-container">
+                    <div class="slider-wrapper" id="sliderWrapper">
+                        <!-- Слайды будут добавлены через JS -->
+                    </div>
+                    
+                    <!-- Стрелки навигации -->
+                    <button class="slider-arrow slider-arrow-prev" id="prevSlide">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button class="slider-arrow slider-arrow-next" id="nextSlide">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Точки навигации -->
+                <div class="slider-dots" id="sliderDots">
+                    <!-- Точки будут добавлены через JS -->
+                </div>
+                
+                <!-- Форма обратной связи -->
+                <div class="service-form" id="serviceFormBlock">
+                    <div class="form-card">
+                        <h3 class="form-title">Оставьте заявку</h3>
+                        <p class="form-lead">Заполните контакты и кратко опишите задачу — мы свяжемся с вами в ближайшее время.</p>
+
+                        <form id="serviceContactForm" novalidate>
+                            <!-- honeypot для антиспама -->
+                            <input type="text" name="company" class="hp-field" tabindex="-1" aria-hidden="true" autocomplete="off" />
+
+                            <div class="form-row">
+                                <label class="form-field">
+                                    <span class="form-label">Ваше имя</span>
+                                    <input type="text" id="cfName" name="name" placeholder="Иван Иванов" required />
+                                </label>
+                                <label class="form-field">
+                                    <span class="form-label">Телефон</span>
+                                    <input type="tel" id="cfPhone" name="phone" placeholder="+7 (___) ___-__-__" inputmode="tel" required />
+                                </label>
+                            </div>
+
+                            <div class="form-row">
+                                <label class="form-field">
+                                    <span class="form-label">E‑mail</span>
+                                    <input type="email" id="cfEmail" name="email" placeholder="name@example.com" autocomplete="email" />
+                                </label>
+                                <label class="form-field">
+                                    <span class="form-label">Услуга</span>
+                                    <input type="text" id="cfService" name="service" readonly />
+                                </label>
+                            </div>
+
+                            <label class="form-field">
+                                <span class="form-label">Сообщение</span>
+                                <textarea id="cfMessage" name="message" rows="4" placeholder="Опишите задачу, сроки и объём работ"></textarea>
+                            </label>
+
+                            <div class="form-consent">
+                                <button type="submit" class="btn-submit" id="cfSubmit">Отправить</button>
+                            </div>
+
+                            <div class="form-status" id="cfStatus" role="status" aria-live="polite"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Правая часть: Описание -->
+            <div class="service-description">
+                <div class="description-card">
+                    <h2 class="description-title">Описание услуги</h2>
+                    <div class="description-text" id="serviceDescription">
+                        <!-- Описание будет добавлено через JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'includes/footer.html' %}
+
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/service.js' %}"></script>
+{% block extra_js %}{% endblock %}
+
+<!-- Chat Widget -->
+{% include 'assistant/widget.html' %}
+
+</body>
+</html>

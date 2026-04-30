@@ -1,0 +1,212 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block extrastyle %}
+<style>
+    .dashboard-container {
+        padding: 20px;
+    }
+    .stats-cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    .stat-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .stat-number {
+        font-size: 36px;
+        font-weight: bold;
+        color: #5B3A99;
+    }
+    .stat-label {
+        font-size: 14px;
+        color: #666;
+        margin-top: 8px;
+    }
+    .chart-container {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .chart-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #333;
+    }
+    .two-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    .popular-list {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .popular-item {
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+    }
+    .popular-item:last-child {
+        border-bottom: none;
+    }
+    .popular-name {
+        color: #333;
+    }
+    .popular-count {
+        color: #5B3A99;
+        font-weight: bold;
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h1>📊 Дашборд аналитики</h1>
+    <p>Статистика за последние 30 дней</p>
+    
+    <div class="stats-cards">
+        <div class="stat-card">
+            <div class="stat-number">{{ total_views }}</div>
+            <div class="stat-label">📄 Просмотров страниц</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ total_searches }}</div>
+            <div class="stat-label">🔍 Поисковых запросов</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ total_chats }}</div>
+            <div class="stat-label">💬 Сообщений в чате</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ total_sessions }}</div>
+            <div class="stat-label">👥 Уникальных сессий</div>
+        </div>
+    </div>
+    
+    <div class="chart-container">
+        <div class="chart-title">📈 Просмотры страниц по дням</div>
+        <canvas id="viewsChart" height="100"></canvas>
+    </div>
+    
+    <div class="two-columns">
+        <div class="chart-container">
+            <div class="chart-title">🔍 Поисковые запросы по дням</div>
+            <canvas id="searchesChart" height="200"></canvas>
+        </div>
+        <div class="chart-container">
+            <div class="chart-title">💬 Сообщения в чате по дням</div>
+            <canvas id="chatsChart" height="200"></canvas>
+        </div>
+    </div>
+    
+    <div class="two-columns">
+        <div class="popular-list">
+            <div class="chart-title">🔥 Популярные страницы</div>
+            {% for page in popular_pages %}
+            <div class="popular-item">
+                <span class="popular-name">{{ page.page_title|default:page.page_url|truncatechars:40 }}</span>
+                <span class="popular-count">{{ page.count }} просмотров</span>
+            </div>
+            {% empty %}
+            <div class="popular-item">Нет данных</div>
+            {% endfor %}
+        </div>
+        
+        <div class="popular-list">
+            <div class="chart-title">🔍 Популярные поисковые запросы</div>
+            {% for search in popular_searches %}
+            <div class="popular-item">
+                <span class="popular-name">{{ search.query }}</span>
+                <span class="popular-count">{{ search.count }} раз</span>
+            </div>
+            {% empty %}
+            <div class="popular-item">Нет данных</div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="chart-container">
+        <div class="chart-title">🤖 Откуда брал ответы чат-бот</div>
+        <canvas id="sourcesChart" height="150"></canvas>
+    </div>
+</div>
+
+<script>
+const viewsData = {{ views_by_day|safe }};
+const searchesData = {{ searches_by_day|safe }};
+const chatsData = {{ chats_by_day|safe }};
+const sourcesData = {{ chat_sources|safe }};
+
+if (viewsData.length) {
+    new Chart(document.getElementById('viewsChart'), {
+        type: 'line',
+        data: {
+            labels: viewsData.map(d => d.day),
+            datasets: [{
+                label: 'Просмотры',
+                data: viewsData.map(d => d.count),
+                borderColor: '#5B3A99',
+                backgroundColor: 'rgba(91, 58, 153, 0.1)',
+                fill: true
+            }]
+        }
+    });
+}
+
+if (searchesData.length) {
+    new Chart(document.getElementById('searchesChart'), {
+        type: 'bar',
+        data: {
+            labels: searchesData.map(d => d.day),
+            datasets: [{
+                label: 'Поисковые запросы',
+                data: searchesData.map(d => d.count),
+                backgroundColor: '#4DA5A3'
+            }]
+        }
+    });
+}
+
+if (chatsData.length) {
+    new Chart(document.getElementById('chatsChart'), {
+        type: 'bar',
+        data: {
+            labels: chatsData.map(d => d.day),
+            datasets: [{
+                label: 'Сообщения в чате',
+                data: chatsData.map(d => d.count),
+                backgroundColor: '#5B3A99'
+            }]
+        }
+    });
+}
+
+if (sourcesData.length) {
+    new Chart(document.getElementById('sourcesChart'), {
+        type: 'pie',
+        data: {
+            labels: sourcesData.map(d => d.response_source || 'unknown'),
+            datasets: [{
+                data: sourcesData.map(d => d.count),
+                backgroundColor: ['#5B3A99', '#4DA5A3', '#FF9800', '#F44336', '#9C27B0']
+            }]
+        }
+    });
+}
+</script>
+{% endblock %}

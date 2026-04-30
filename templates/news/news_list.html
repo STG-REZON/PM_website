@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Новости - Pascal Medical{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/news.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="breadcrumbs-wrapper">
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}" class="breadcrumb-item">Главная</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-item active">Новости</span>
+        </nav>
+    </div>
+</div>
+
+<section class="news-page">
+    <div class="container">
+        <h1 class="page-title">Новости</h1>
+        
+        <div class="news-grid">
+            {% for item in news %}
+            <div class="news-card" onclick="location.href='{% url 'news_detail' item.id %}'">
+                <img src="{{ item.image.url }}" alt="{{ item.title }}" class="news-card-image">
+                <div class="news-card-content">
+                    <span class="news-card-date">{{ item.date|date:"d.m.Y H:i" }}</span>
+                    <h3 class="news-card-title">{{ item.title }}</h3>
+                    <p class="news-card-excerpt">{{ item.excerpt|truncatechars:120 }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="no-news-message">
+                <p>Новостей пока нет. Следите за обновлениями!</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,60 @@
+# Виртуальное окружение
+venv/
+env/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.log
+*.pid
+
+# База данных (не выгружаем)
+db.sqlite3
+*.db
+*.sqlite3
+
+# Медиа-файлы (загруженные картинки)
+media/
+*.jpg
+*.png
+*.jpeg
+*.webp
+*.svg
+*.ico
+
+# Статика (скомпилированная)
+staticfiles/
+static_collected/
+
+# IDE и редакторы
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Секреты и конфиги с паролями
+.env
+secrets.py
+config.py
+settings_local.py
+*.key
+*.pem
+
+# Архивы и временные файлы
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.tmp
+*.temp
+
+# Логи
+*.log
+logs/

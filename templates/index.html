@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Pascal Medical - Главная{% endblock %}
+
+{% block content %}
+<!-- HERO SECTION -->
+<section class="hero-section" id="top">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1 class="hero-title">Полный цикл производства медицинской продукции в России</h1>
+    </div>
+</section>
+
+<!-- УСЛУГИ - СЕТКА 2×2 -->
+<section class="services-section" id="services">
+    <div class="container">
+        <h2 class="section-title">Услуги</h2>
+        <div class="services-circular">
+            <div class="services-grid">
+                <!-- Верхняя левая -->
+                <div class="service-card service-card-1">
+                    <div class="service-card-inner">
+                        <img src="{% static 'img/img_photo/2_2.jpg' %}" alt="Изготовление пластиковых изделий" class="service-img">
+                        <h3 class="service-title"><span>Изготовление пластиковых изделий</span></h3>
+                    </div>
+                </div>
+                
+                <!-- Верхняя правая -->
+                <div class="service-card service-card-2">
+                    <div class="service-card-inner">
+                        <img src="{% static 'img/img_photo/3_1.jpg' %}" alt="Сборка" class="service-img">
+                        <h3 class="service-title"><span>Сборка</span></h3>
+                    </div>
+                </div>
+                
+                <!-- Нижняя левая -->
+                <div class="service-card service-card-3">
+                    <div class="service-card-inner">
+                        <img src="{% static 'img/img_photo/6_1.jpg' %}" alt="Упаковка" class="service-img">
+                        <h3 class="service-title"><span>Упаковка</span></h3>
+                    </div>
+                </div>
+                
+                <!-- Нижняя правая -->
+                <div class="service-card service-card-4">
+                    <div class="service-card-inner">
+                        <img src="{% static 'img/img_photo/7_1.jpg' %}" alt="Стерилизация" class="service-img">
+                        <h3 class="service-title"><span>Стерилизация</span></h3>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Центральный логотип -->
+            <div class="services-center">
+                <img src="{% static 'img/logo.svg' %}" alt="Pascal Medical" class="services-center-logo">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products-section" id="products">
+    <div class="container">
+        <h2 class="section-title">Продукция</h2>
+        <div class="cards-grid products-grid">
+            <a href="{% url 'product_category' %}?cat=1" class="card product-card">
+                <div class="card-image">
+                    <img src="{% static 'img/2-22G-0,7х40(3)-min.jpg' %}" alt="Шприцы инъекционные однократного применения">
+                </div>
+                <h3 class="card-title">Шприцы инъекционные однократного применения</h3>
+            </a>
+            
+            <a href="{% url 'product_category' %}?cat=2" class="card product-card">
+                <div class="card-image">
+                    <img src="{% static 'img/5-0,8х40-0,7х40(3)-.jpg' %}" alt="Шприцы с двумя иглами">
+                </div>
+                <h3 class="card-title">Шприцы инъекционные однократного применения с двумя иглами</h3>
+            </a>
+            
+            <a href="{% url 'product_category' %}?cat=3" class="card product-card">
+                <div class="card-image">
+                    <img src="{% static 'img/sessiya-bez-nazvaniya5158.jpg' %}" alt="Шприцы для инсулина">
+                </div>
+                <h3 class="card-title">Шприцы инъекционные однократного применения для инсулина</h3>
+            </a>
+            
+            <a href="{% url 'product_category' %}?cat=4" class="card product-card">
+                <div class="card-image">
+                    <img src="{% static 'img/glavnaya-1800x2400.jpg' %}" alt="Инфузионные системы">
+                </div>
+                <h3 class="card-title">Инфузионные и трансфузионные системы</h3>
+            </a>
+            
+            <a href="{% url 'product_category' %}?cat=5" class="card product-card">
+                <div class="card-image">
+                    <img src="{% static 'img/n_5.png' %}" alt="Иглы инъекционные стерильные">
+                </div>
+                <h3 class="card-title">Иглы инъекционные стерильные</h3>
+            </a>
+            
+            <a href="{% url 'product_category' %}?cat=6" class="card product-card">
+                <div class="card-image">
+                    <img src="{% static 'img/n_1.png' %}" alt="Иглы инъекционные нестерильные">
+                </div>
+                <h3 class="card-title">Иглы инъекционные нестерильные</h3>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

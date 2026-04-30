@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вакансии - Pascal Medical</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vacancies.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+{% include 'includes/header.html' %}
+
+<div class="search-overlay" id="searchOverlay">
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Поиск по сайту..." id="searchInput">
+        <button class="search-close" id="searchClose">
+            <span>&times;</span>
+        </button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+</div>
+
+<div class="toast" id="toast">Номер скопирован!</div>
+
+<!-- BREADCRUMBS -->
+<div class="breadcrumbs-wrapper">
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}" class="breadcrumb-item">Главная</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-item active">Вакансии</span>
+        </nav>
+    </div>
+</div>
+
+<!-- VACANCIES PAGE -->
+<section class="vacancies-page">
+    <div class="container">
+        <h1 class="page-title">Вакансии</h1>
+        
+        <div class="vacancies-grid">
+            <!-- Вакансия 1: Упаковщик -->
+            <div class="vacancy-card">
+                <div class="vacancy-icon">
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                        <rect x="10" y="15" width="40" height="35" rx="4" stroke="#5B3A99" stroke-width="2.5" fill="none"/>
+                        <path d="M20 15V10C20 8.89543 20.8954 8 22 8H38C39.1046 8 40 8.89543 40 10V15" stroke="#4DA5A3" stroke-width="2.5"/>
+                        <line x1="20" y1="25" x2="40" y2="25" stroke="#5B3A99" stroke-width="2"/>
+                        <line x1="20" y1="32" x2="40" y2="32" stroke="#5B3A99" stroke-width="2"/>
+                        <line x1="20" y1="39" x2="32" y2="39" stroke="#5B3A99" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h3 class="vacancy-title">Упаковщик</h3>
+                <p class="vacancy-short">График работы 2/2. Оформление по ТК РФ.</p>
+                <button class="vacancy-btn" data-vacancy="packer">Подробнее</button>
+            </div>
+
+            <!-- Вакансия 2: Оператор -->
+            <div class="vacancy-card">
+                <div class="vacancy-icon">
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                        <circle cx="30" cy="30" r="20" stroke="#5B3A99" stroke-width="2.5" fill="none"/>
+                        <path d="M30 18V30L38 38" stroke="#4DA5A3" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="30" cy="30" r="3" fill="#5B3A99"/>
+                    </svg>
+                </div>
+                <h3 class="vacancy-title">Оператор</h3>
+                <p class="vacancy-short">График работы 5/2. Оформление по ТК РФ.</p>
+                <button class="vacancy-btn" data-vacancy="operator">Подробнее</button>
+            </div>
+
+            <!-- Вакансия 3: Механик -->
+            <div class="vacancy-card">
+                <div class="vacancy-icon">
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                        <path d="M25 20L30 15L35 20M30 15V35" stroke="#5B3A99" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="30" cy="40" r="8" stroke="#4DA5A3" stroke-width="2.5" fill="none"/>
+                        <path d="M30 36V44M26 40H34" stroke="#4DA5A3" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h3 class="vacancy-title">Механик</h3>
+                <p class="vacancy-short">График работы 5/2. Оформление по ТК РФ.</p>
+                <button class="vacancy-btn" data-vacancy="mechanic">Подробнее</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-container">
+        <button class="modal-close" id="modalClose">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+        <div class="modal-content" id="modalContent">
+            <!-- Контент будет добавлен через JS -->
+        </div>
+    </div>
+</div>
+
+{% include 'includes/footer.html' %}
+
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/vacancies.js' %}"></script>
+{% block extra_js %}{% endblock %}
+
+<!-- Chat Widget -->
+{% include 'assistant/widget.html' %}
+
+</body>
+</html>

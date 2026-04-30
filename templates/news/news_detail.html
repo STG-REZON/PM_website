@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ news.title }} - Pascal Medical{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/news.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="breadcrumbs-wrapper">
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}" class="breadcrumb-item">Главная</a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="{% url 'news_list' %}" class="breadcrumb-item">Новости</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-item active">{{ news.title|truncatechars:50 }}</span>
+        </nav>
+    </div>
+</div>
+
+<section class="news-detail-page">
+    <div class="container">
+        <div class="news-detail">
+            <span class="news-detail-date">{{ news.date|date:"d.m.Y H:i" }}</span>
+            <h1 class="news-detail-title">{{ news.title }}</h1>
+            <img src="{{ news.image.url }}" alt="{{ news.title }}" class="news-detail-image">
+            <div class="news-detail-content">
+                {{ news.content|safe }}
+            </div>
+        </div>
+        
+        <div class="news-back">
+            <a href="{% url 'news_list' %}" class="back-link">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M12 16L6 10L12 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Вернуться к новостям
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

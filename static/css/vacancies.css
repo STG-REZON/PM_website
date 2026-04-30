@@ -1,0 +1,273 @@
+/* ========================================
+   VACANCIES PAGE
+   ======================================== */
+.vacancies-page {
+    padding: 70px 50px 90px;
+    background: transparent;
+    position: relative;
+    min-height: 70vh;
+}
+
+.page-title {
+    font-size: 42px;
+    font-weight: 900;
+    color: #462878;
+    margin: 0 0 60px 0;
+    text-align: center;
+    position: relative;
+    padding-bottom: 22px;
+}
+
+.page-title::after {
+    content: '';
+    display: block;
+    width: 120px;
+    height: 5px;
+    background: linear-gradient(90deg, #4DA5A3, #5B3A99);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 3px;
+}
+
+/* ========================================
+   VACANCIES GRID
+   ======================================== */
+.vacancies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.vacancy-card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 40px 30px;
+    box-shadow: 0 6px 25px rgba(91, 58, 153, 0.12);
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.vacancy-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #4DA5A3, #5B3A99);
+}
+
+.vacancy-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(91, 58, 153, 0.18);
+}
+
+.vacancy-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(77, 165, 163, 0.1), rgba(91, 58, 153, 0.1));
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+}
+
+.vacancy-card:hover .vacancy-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.vacancy-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #462878;
+    margin: 0 0 15px 0;
+}
+
+.vacancy-short {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #666;
+    margin: 0 0 25px 0;
+}
+
+.vacancy-btn {
+    display: inline-block;
+    padding: 12px 32px;
+    background: linear-gradient(135deg, #4DA5A3, #5B3A99);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(91, 58, 153, 0.2);
+}
+
+.vacancy-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(91, 58, 153, 0.3);
+}
+
+/* ========================================
+   MODAL
+   ======================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-container {
+    background: #fff;
+    border-radius: 24px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    padding: 45px;
+    box-shadow: 0 15px 60px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-container {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(91, 58, 153, 0.1);
+    border: none;
+    border-radius: 50%;
+    color: #462878;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.modal-close:hover {
+    background: #5B3A99;
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+.modal-content h2 {
+    font-size: 32px;
+    font-weight: 900;
+    color: #462878;
+    margin: 0 0 10px 0;
+}
+
+.modal-salary {
+    font-size: 20px;
+    font-weight: 700;
+    color: #4DA5A3;
+    margin: 0 0 25px 0;
+}
+
+.modal-content h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #462878;
+    margin: 30px 0 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(77, 165, 163, 0.3);
+}
+
+.modal-content ul {
+    margin: 0 0 20px 0;
+    padding-left: 25px;
+}
+
+.modal-content li {
+    margin-bottom: 10px;
+    line-height: 1.7;
+    color: #333;
+}
+
+.modal-content p {
+    line-height: 1.8;
+    color: #444;
+    margin: 0 0 18px 0;
+}
+
+.modal-contact {
+    background: linear-gradient(135deg, rgba(77, 165, 163, 0.1), rgba(91, 58, 153, 0.1));
+    padding: 20px;
+    border-radius: 16px;
+    margin-top: 30px;
+}
+
+.modal-contact p {
+    margin: 8px 0;
+    font-size: 15px;
+}
+
+.modal-contact strong {
+    color: #462878;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+    .vacancies-page {
+        padding: 50px 30px 70px;
+    }
+    
+    .page-title {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+    
+    .vacancies-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .vacancy-card {
+        padding: 35px 25px;
+    }
+    
+    .modal-container {
+        padding: 35px 25px;
+        width: 95%;
+    }
+    
+    .modal-content h2 {
+        font-size: 26px;
+    }
+}

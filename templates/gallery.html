@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Фотогалерея - Pascal Medical{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- BREADCRUMBS -->
+<div class="breadcrumbs-wrapper">
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}" class="breadcrumb-item">Главная</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-item active">Фотогалерея</span>
+        </nav>
+    </div>
+</div>
+
+<!-- GALLERY SECTION -->
+<section class="gallery-section">
+    <div class="container">
+        <h1 class="gallery-title">Фотогалерея</h1>
+        
+        <div class="gallery-grid">
+            <!-- 1. Главный корпус -->
+            <div class="gallery-card" data-gallery-id="1">
+                <div class="gallery-image">
+                    <img src="{% static 'img/img_photo/1_2.jpg' %}" alt="Главный корпус">
+                </div>
+                <p class="gallery-caption">Главный корпус</p>
+            </div>
+            
+            <!-- 2. Цех литья -->
+            <div class="gallery-card" data-gallery-id="2">
+                <div class="gallery-image">
+                    <img src="{% static 'img/img_photo/2_1.jpg' %}" alt="Цех литья">
+                </div>
+                <p class="gallery-caption">Участок литья</p>
+            </div>
+            
+            <!-- 3. Цех сборки шприцов -->
+            <div class="gallery-card" data-gallery-id="3">
+                <div class="gallery-image">
+                    <img src="{% static 'img/img_photo/3_1.jpg' %}" alt="Цех сборки шприцов">
+                </div>
+                <p class="gallery-caption">Участок сборки шприцев</p>
+            </div>
+            
+            <!-- 4. Цех иглосборки -->
+            <div class="gallery-card" data-gallery-id="4">
+                <div class="gallery-image">
+                    <img src="{% static 'img/img_photo/4_1.jpg' %}" alt="Участок иглосборки">
+                </div>
+                <p class="gallery-caption">Участок сборки иглы</p>
+            </div>
+            
+            <!-- 5. Лаборатория -->
+            <div class="gallery-card" data-gallery-id="5">
+                <div class="gallery-image">
+                    <img src="{% static 'img/img_photo/5_1.jpg' %}" alt="Лаборатория">
+                </div>
+                <p class="gallery-caption">Лаборатория контроля качества</p>
+            </div>
+            
+            <!-- 6. Упаковка -->
+            <div class="gallery-card" data-gallery-id="6">
+                <div class="gallery-image">
+                    <img src="{% static 'img/img_photo/6_1.jpg' %}" alt="Упаковка">
+                </div>
+                <p class="gallery-caption">Участок упаковки</p>
+            </div>
+            
+            <!-- 7. Стерилизация -->
+            <div class="gallery-card" data-gallery-id="7">
+                <div class="gallery-image">
+                    <img src="{% static 'img/img_photo/7_1.jpg' %}" alt="Стерилизация">
+                </div>
+                <p class="gallery-caption">Участок стерилизации</p>
+            </div>
+            
+            <!-- 8. Склад -->
+            <div class="gallery-card" data-gallery-id="8">
+                <div class="gallery-image">
+                    <img src="{% static 'img/img_photo/8_4.jpg' %}" alt="Склад">
+                </div>
+                <p class="gallery-caption">Склад</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MODAL для просмотра фото -->
+<div class="modal" id="galleryModal">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <div class="modal-image-container">
+            <button class="modal-nav modal-prev" id="modalPrev">&#8249;</button>
+            <img src="" alt="Фото" id="modalImage" class="modal-image">
+            <button class="modal-nav modal-next" id="modalNext">&#8250;</button>
+        </div>
+        <div class="modal-counter" id="modalCounter">1 / 1</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/gallery.js' %}"></script>
+{% endblock %}

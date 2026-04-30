@@ -1,0 +1,382 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}О компании - Pascal Medical{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- BREADCRUMBS -->
+<div class="breadcrumbs-wrapper">
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}" class="breadcrumb-item">Главная</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-item active">О компании</span>
+        </nav>
+    </div>
+</div>
+
+<!-- ABOUT PAGE -->
+<section class="about-page">
+    <div class="container">
+        <h1 class="page-title">О компании</h1>
+        
+        <div class="about-content">
+            <div class="about-inner">
+                <!-- IMAGE -->
+                <div class="about-image-wrapper">
+                    <div class="about-image-card">
+                        <img src="{% static 'img/foto-zavoda.jpg' %}" alt="Паскаль Медикал производство" class="about-image">
+                    </div>
+                </div>
+                
+                <!-- КНОПКИ НА ВИДЕО И ФОТОГАЛЕРЕЮ -->
+                <div class="action-buttons">
+                    <a href="https://rutube.ru" target="_blank" rel="noopener noreferrer" class="btn-action btn-gallery">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                        <span>Rutube</span>
+                    </a>
+                    <a href="{% url 'gallery' %}" class="btn-action btn-gallery">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                        </svg>
+                        <span>Фотогалерея</span>
+                    </a>
+                </div>
+                
+                <!-- TEXT -->
+                <div class="about-text-wrapper">
+                    <div class="about-text-card">
+                        <p class="about-paragraph">
+                            <strong>ООО «ПАСКАЛЬ МЕДИКАЛ»</strong> было зарегистрировано 23.12.2014. Компания получила статус резидента ОЭЗ «Дубна», о чем подписано соглашение с Минэкономразвития РФ.
+                        </p>
+
+                        <p class="about-paragraph">
+                            Производство оснащено <strong>современными производственными мощностями</strong> европейских производителей оборудования, применяются передовые технологии, которые обеспечивают оптимальную себестоимость конечного изделия за счет существенной экономии сырья, долговечности и высокой надежности оборудования.
+                            Текст тут должен быть.
+                            Текст тут должен быть.
+                            Текст тут должен быть.
+                            Текст тут должен быть.
+                            Текст тут должен быть.
+                            Текст тут должен быть.
+                            Текст тут должен быть.
+                            Текст тут должен быть.
+                        </p>
+
+                        <div class="about-highlight">
+                            <div class="highlight-icon">✓</div>
+                            <p>Наше производство – это <strong>производство полного цикла</strong>, включая собственную стерилизацию и собственное производство медицинских игл.</p>
+                        </div>
+
+                        <p class="about-paragraph">
+                            Эти факторы позволяют производить медицинские изделия, отвечающие всем требованиям национальных и международных стандартов в области надлежащей производственной практики <strong>(GMP)</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADDITIONAL INFO -->
+        <div class="about-additional">
+            <div class="info-card">
+                <div class="info-icon">🎯</div>
+                <h3 class="info-title">Стандарт GMP</h3>
+                <p class="info-text">
+                    В отличии от процедуры контроля качества, которая обеспечивает пригодность к использованию выборочных образцов, стандарт GMP отражает <strong>целостный подход</strong>, регулирует и оценивает собственно параметры производства и лабораторной проверки.
+                </p>
+            </div>
+            
+            <div class="info-card">
+                <div class="info-icon">⚙️</div>
+                <h3 class="info-title">Система качества</h3>
+                <p class="info-text">
+                    Высокое качество обеспечивает реализацию проектных решений строго в рамках требований GMP. Система направлена на <strong>предотвращение ошибок</strong> и отклонений путем учета всех факторов, способных повлиять на качество готовой продукции.
+                </p>
+            </div>
+            
+            <div class="info-card">
+                <div class="info-icon">🔬</div>
+                <h3 class="info-title">Контроль качества</h3>
+                <p class="info-text">
+                    Контроль качества осуществляется с использованием <strong>современнейшего аналитического оборудования</strong>. Испытательными лабораториями нашего предприятия проводится более <strong>100 видов испытаний</strong> ежесменно.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ГДЕ КУПИТЬ РАЗДЕЛ -->
+<div class="where-to-buy-section">
+    <h2 class="section-title">Где купить</h2>
+    <p class="buy-intro-text">
+        Вы можете приобрести продукцию компании напрямую у компании. Свяжитесь с нами через <a href="{% url 'contacts' %}" class="buy-link">контакты</a>.
+    </p>
+</div>
+
+<!-- ИНТЕРНЕТ-МАГАЗИНЫ -->
+<div class="stores-section">
+    <h3 class="section-subtitle">Интернет-магазины</h3>
+    <div class="stores-grid">
+        <a href="https://market.yandex.ru" target="_blank" rel="noopener noreferrer" class="store-card">
+            <div class="store-image">
+                <img src="{% static 'img/mag/yandex.png' %}" alt="Яндекс Маркет">
+            </div>
+            <h4 class="store-name">Яндекс Маркет</h4>
+            <p class="store-desc">Крупнейший маркетплейс с широким ассортиментом</p>
+        </a>
+
+        <a href="https://sbereapteka.ru" target="_blank" rel="noopener noreferrer" class="store-card">
+            <div class="store-image">
+                <img src="{% static 'img/mag/sbereapteka.png' %}" alt="Сбер Аптека">
+            </div>
+            <h4 class="store-name">СБЕР АПТЕКА</h4>
+            <p class="store-desc">Сертифицированные лекарства и товары для здоровья</p>
+        </a>
+
+        <a href="https://apteka.ru" target="_blank" rel="noopener noreferrer" class="store-card">
+            <div class="store-image">
+                <img src="{% static 'img/mag/aptekaru_6.png' %}" alt="Аптека.ру">
+            </div>
+            <h4 class="store-name">Аптека.ру</h4>
+            <p class="store-desc">Федеральный интернет-сервис по заказу аптечных товаров</p>
+        </a>
+
+        <a href="https://zdravsiti.com" target="_blank" rel="noopener noreferrer" class="store-card">
+            <div class="store-image">
+                <img src="{% static 'img/mag/zdravcity.png' %}" alt="Здравсити">
+            </div>
+            <h4 class="store-name">Здравсити</h4>
+            <p class="store-desc">Онлайн сервис по заказу лекарственных препаратов</p>
+        </a>
+    </div>
+</div>
+
+<!-- ДИСТРИБЬЮТЕРЫ -->
+<div class="distributors-section">
+    <h3 class="section-subtitle">Дистрибьютеры</h3>
+    <div class="distributors-grid">
+        <div class="distributor-card" data-modal="modal-distributor-1">
+            <div class="distributor-image">
+                <img src="{% static 'img/mag/avesta.png' %}" alt="Авеста Фармацевтика">
+            </div>
+            <h4 class="distributor-name">Авеста Фармацевтика</h4>
+            <p class="distributor-desc">Крупнейший в России фармацевтический дистрибьютор</p>
+        </div>
+
+        <div class="distributor-card" data-modal="modal-distributor-2">
+            <div class="distributor-image">
+                <img src="{% static 'img/mag/karten.png' %}" alt="Катрен">
+            </div>
+            <h4 class="distributor-name">Катрен</h4>
+            <p class="distributor-desc">Лидер российского фармацевтического рынка</p>
+        </div>
+
+        <div class="distributor-card" data-modal="modal-distributor-3">
+            <div class="distributor-image">
+                <img src="{% static 'img/mag/shaklin1.png' %}" alt="Шаклин">
+            </div>
+            <h4 class="distributor-name">Шаклин</h4>
+            <p class="distributor-desc">Крупный поставщик медицинских изделий в Сибири</p>
+        </div>
+
+        <div class="distributor-card" data-modal="modal-distributor-4">
+            <div class="distributor-image">
+                <img src="{% static 'img/mag/magnit_pharma2.png' %}" alt="Магнит Фарма">
+            </div>
+            <h4 class="distributor-name">Магнит Фарма</h4>
+            <p class="distributor-desc">Один из крупнейших российских фармацевтических дистрибьютеров</p>
+        </div>
+    </div>
+</div>
+
+<!-- Модальные окна дистрибьюторов (оставляем как есть, только пути к изображениям) -->
+<div id="modal-distributor-1" class="distributor-modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content-distributor">
+        <button class="modal-close-btn">&times;</button>
+        <div class="modal-header-dist">
+            <div class="modal-logo-dist">
+                <img src="{% static 'img/mag/avesta.png' %}" alt="Авеста">
+            </div>
+            <div class="modal-title-dist">
+                <h2>Авеста Фармацевтика</h2>
+                <p class="modal-tagline">Лидер дистрибьюторского сегмента России</p>
+            </div>
+        </div>
+        <div class="modal-divider"></div>
+        <div class="modal-body-dist">
+            <div class="modal-section">
+                <h3 class="modal-subtitle">О компании</h3>
+                <p>Компания «Авеста Фармацевтика» - крупнейший в России фармацевтический дистрибьютор, занимающий прочное место в 5-ке фармацевтических компаний Центрального Федерального Округа.</p>
+            </div>
+            <div class="modal-section">
+                <h3 class="modal-subtitle">Наши услуги</h3>
+                <ul class="modal-list">
+                    <li>Распределение и поставка фармацевтических препаратов</li>
+                    <li>Поставка витаминов и биологически активных добавок</li>
+                    <li>Товары для здоровья и красоты</li>
+                    <li>Профессиональная консультация и поддержка</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3 class="modal-subtitle">Регионы деятельности</h3>
+                <p>Широкая сеть филиалов и представительств по всей территории Российской Федерации</p>
+            </div>
+        </div>
+        <div class="modal-divider"></div>
+        <div class="modal-footer-dist">
+            <a href="https://avesta.ru" target="_blank" rel="noopener noreferrer" class="modal-btn-primary">
+                <span>Перейти на сайт</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div id="modal-distributor-2" class="distributor-modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content-distributor">
+        <button class="modal-close-btn">&times;</button>
+        <div class="modal-header-dist">
+            <div class="modal-logo-dist">
+                <img src="{% static 'img/mag/karten.png' %}" alt="Катрен">
+            </div>
+            <div class="modal-title-dist">
+                <h2>Катрен</h2>
+                <p class="modal-tagline">Один из лидеров фармацевтического рынка</p>
+            </div>
+        </div>
+        <div class="modal-divider"></div>
+        <div class="modal-body-dist">
+            <div class="modal-section">
+                <h3 class="modal-subtitle">О компании</h3>
+                <p>Компания «Катрен» на сегодняшний день является одним из лидеров российского фармацевтического рынка, обеспечивая ежедневное обновление ассортимента.</p>
+            </div>
+            <div class="modal-section">
+                <h3 class="modal-subtitle">Преимущества сотрудничества</h3>
+                <ul class="modal-list">
+                    <li>Ежедневно обновляющийся ассортимент</li>
+                    <li>Широкая сеть филиалов и представительств</li>
+                    <li>Доверительные отношения с клиентами и партнерами</li>
+                    <li>Профессиональное обслуживание и поддержка</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3 class="modal-subtitle">Спектр услуг</h3>
+                <p>Поставка медицинских изделий, лекарственных препаратов и медицинского оборудования по всей России</p>
+            </div>
+        </div>
+        <div class="modal-divider"></div>
+        <div class="modal-footer-dist">
+            <a href="https://katren.ru" target="_blank" rel="noopener noreferrer" class="modal-btn-primary">
+                <span>Перейти на сайт</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div id="modal-distributor-3" class="distributor-modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content-distributor">
+        <button class="modal-close-btn">&times;</button>
+        <div class="modal-header-dist">
+            <div class="modal-logo-dist">
+                <img src="{% static 'img/mag/shaklin1.png' %}" alt="Шаклин">
+            </div>
+            <div class="modal-title-dist">
+                <h2>Шаклин</h2>
+                <p class="modal-tagline">Крупный поставщик медицинских изделий</p>
+            </div>
+        </div>
+        <div class="modal-divider"></div>
+        <div class="modal-body-dist">
+            <div class="modal-section">
+                <h3 class="modal-subtitle">О компании</h3>
+                <p>Крупнейший поставщик расходных медицинских изделий в Сибири и на Дальнем Востоке, работающий под собственной торговой маркой INEKTA.</p>
+            </div>
+            <div class="modal-section">
+                <h3 class="modal-subtitle">Специализация</h3>
+                <ul class="modal-list">
+                    <li>Расходные медицинские изделия</li>
+                    <li>Медицинское оборудование высокого класса</li>
+                    <li>Стоматологические материалы</li>
+                    <li>Собственная торговая марка INEKTA</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3 class="modal-subtitle">Регион деятельности</h3>
+                <p>Сибирь и Дальний Восток. Высочайший уровень качества товаров и сервиса</p>
+            </div>
+        </div>
+        <div class="modal-divider"></div>
+        <div class="modal-footer-dist">
+            <a href="https://shaklin.ru" target="_blank" rel="noopener noreferrer" class="modal-btn-primary">
+                <span>Перейти на сайт</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div id="modal-distributor-4" class="distributor-modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content-distributor">
+        <button class="modal-close-btn">&times;</button>
+        <div class="modal-header-dist">
+            <div class="modal-logo-dist">
+                <img src="{% static 'img/mag/magnit_pharma2.png' %}" alt="Магнит Фарма">
+            </div>
+            <div class="modal-title-dist">
+                <h2>Магнит Фарма</h2>
+                <p class="modal-tagline">Лидер фармацевтического распределения</p>
+            </div>
+        </div>
+        <div class="modal-divider"></div>
+        <div class="modal-body-dist">
+            <div class="modal-section">
+                <h3 class="modal-subtitle">О компании</h3>
+                <p>«Магнит Фарма» - один из крупнейших российских фармацевтических дистрибьютеров, предоставляющий полный спектр услуг по распределению медикаментов и оборудования.</p>
+            </div>
+            <div class="modal-section">
+                <h3 class="modal-subtitle">Полный спектр услуг</h3>
+                <ul class="modal-list">
+                    <li>Поставка лекарственных препаратов</li>
+                    <li>Медицинское оборудование и приборы</li>
+                    <li>Товары для здравоохранения и профилактики</li>
+                    <li>Логистика и профессиональная поддержка</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3 class="modal-subtitle">Охват</h3>
+                <p>Работаем по всей территории Российской Федерации с гарантией качества и оперативности доставки</p>
+            </div>
+        </div>
+        <div class="modal-divider"></div>
+        <div class="modal-footer-dist">
+            <a href="https://magnit-farm.ru" target="_blank" rel="noopener noreferrer" class="modal-btn-primary">
+                <span>Перейти на сайт</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/about.js' %}"></script>
+{% endblock %}

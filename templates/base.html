@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Pascal Medical{% endblock %}</title>
+    
+    <!-- Основные CSS -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    
+    <!-- Дополнительные CSS -->
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    {% include 'includes/header.html' %}
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    {% include 'includes/footer.html' %}
+    
+    <!-- Основной JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+    
+    <!-- Дополнительный JS -->
+    {% block extra_js %}{% endblock %}
+    
+    <!-- Toast notification -->
+    <div class="toast" id="toast">Номер скопирован!</div>
+    
+    <!-- Чат-ассистент -->
+    {% include 'assistant/widget.html' %}
+</body>
+</html>

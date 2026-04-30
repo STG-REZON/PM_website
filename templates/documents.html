@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Документы - Pascal Medical{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/documents.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- BREADCRUMBS -->
+<div class="breadcrumbs-wrapper">
+    <div class="container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}" class="breadcrumb-item">Главная</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-item active">Документы</span>
+        </nav>
+    </div>
+</div>
+
+<!-- DOCUMENTS SECTION -->
+<section class="documents-section">
+    <div class="container">
+        <h1 class="documents-title">Документы</h1>
+        
+        <!-- Регистрационное удостоверение -->
+        <div class="documents-category">
+            <h2 class="documents-category-title">Регистрационное удостоверение</h2>
+            <div class="documents-grid">
+                <div class="document-card" data-doc-id="1">
+                    <div class="document-image">
+                        <img src="{% static 'img/img_doc/1_1.jpg' %}" alt="Регистрационное удостоверение 1">
+                    </div>
+                </div>
+                
+                <div class="document-card" data-doc-id="2">
+                    <div class="document-image">
+                        <img src="{% static 'img/img_doc/2_1.jpg' %}" alt="Регистрационное удостоверение 2">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Добровольная сертификация продукции -->
+        <div class="documents-category">
+            <h2 class="documents-category-title">Добровольная сертификация продукции</h2>
+            <div class="documents-grid">
+                <div class="document-card" data-doc-id="3">
+                    <div class="document-image">
+                        <img src="{% static 'img/img_doc/3_1.jpg' %}" alt="Сертификат 1">
+                    </div>
+                </div>
+                
+                <div class="document-card" data-doc-id="4">
+                    <div class="document-image">
+                        <img src="{% static 'img/img_doc/4_1.jpg' %}" alt="Сертификат 2">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Сертификат соответствия -->
+        <div class="documents-category">
+            <h2 class="documents-category-title">Сертификат соответствия</h2>
+            <div class="documents-grid">
+                <div class="document-card" data-doc-id="5">
+                    <div class="document-image">
+                        <img src="{% static 'img/img_doc/5_1.jpg' %}" alt="Сертификат соответствия">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MODAL для просмотра документов -->
+<div class="modal" id="docModal">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <div class="modal-image-container">
+            <button class="modal-nav modal-prev" id="modalPrev">&#8249;</button>
+            <img src="" alt="Документ" id="modalImage" class="modal-image">
+            <button class="modal-nav modal-next" id="modalNext">&#8250;</button>
+        </div>
+        <div class="modal-counter" id="modalCounter">1 / 1</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/documents.js' %}"></script>
+{% endblock %}
