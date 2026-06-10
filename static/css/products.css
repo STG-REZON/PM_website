@@ -19,12 +19,14 @@
 .breadcrumbs {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 14px;
+    gap: 12px;
+    font-size: 17px;
 }
 
 .breadcrumb-item {
     color: var(--primary-purple, #5B3A99);
+    font-size: 17px;
+    font-weight: 600;
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -39,6 +41,7 @@
 }
 
 .breadcrumb-separator {
+    font-size: 17px;
     color: #999;
 }
 
@@ -296,4 +299,34 @@
     .products-grid-15 {
         grid-template-columns: 1fr;
     }
+}
+/* Flat background override */
+html,
+body,
+main,
+section,
+article,
+div[class*='section'],
+div[class*='hero'],
+div[class*='banner'],
+div[class*='page'],
+div[class*='content'] {
+  background: #f5f6fa !important;
+  background-image: none !important;
+}
+
+body::before,
+body::after,
+main::before,
+main::after,
+section::before,
+section::after,
+.hero-section::before,
+.hero-section::after,
+[class*='wave']::before,
+[class*='wave']::after {
+  content: none !important;
+  background: none !important;
+  background-image: none !important;
+  display: none !important;
 }

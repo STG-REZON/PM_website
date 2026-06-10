@@ -4,7 +4,7 @@
 {% block title %}Контакты - Pascal Medical{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/contacts.css' %}">
+<link rel="stylesheet" href="{% static 'css/contacts.css' %}?v=20260603-map-marker">
 {% endblock %}
 
 {% block content %}
@@ -46,7 +46,13 @@
                 </div>
                 
                 <div class="contacts-map">
-                    <div id="map"></div>
+                    <iframe
+                        class="contacts-map-frame"
+                        src="https://yandex.ru/map-widget/v1/?ll=37.165594%2C56.719081&pt=37.165594%2C56.719081%2Cpm2rdm&z=17"
+                        title="Pascal Medical на карте"
+                        loading="lazy"
+                        allowfullscreen>
+                    </iframe>
                 </div>
             </div>
             
@@ -81,6 +87,5 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-<script src="{% static 'js/contacts.js' %}"></script>
+<script src="{% static 'js/contacts.js' %}?v=20260603-map"></script>
 {% endblock %}

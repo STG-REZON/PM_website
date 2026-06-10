@@ -133,12 +133,21 @@
     overflow: hidden;
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.14);
     border: 2px solid #e0e0e0;
+    position: relative;
 }
 
 #map {
     width: 100%;
     height: 100%;
 }
+
+.contacts-map-frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
 
 /* ========================================
    ПРАВАЯ КОЛОНКА: Форма обратной связи
@@ -324,3 +333,33 @@
     margin-bottom: 0;
 }
     
+/* Flat background override */
+html,
+body,
+main,
+section,
+article,
+div[class*='section'],
+div[class*='hero'],
+div[class*='banner'],
+div[class*='page'],
+div[class*='content'] {
+  background: #f5f6fa !important;
+  background-image: none !important;
+}
+
+body::before,
+body::after,
+main::before,
+main::after,
+section::before,
+section::after,
+.hero-section::before,
+.hero-section::after,
+[class*='wave']::before,
+[class*='wave']::after {
+  content: none !important;
+  background: none !important;
+  background-image: none !important;
+  display: none !important;
+}

@@ -10,79 +10,7 @@
 </head>
 <body>
     <!-- HEADER -->
-    <header class="main-header">
-        <div class="header-container">
-            <div class="header-item logo-section logo-no-border">
-                <a href="{% url 'home' %}" class="logo-link">
-                    <img src="{% static 'img/logo.svg' %}" alt="Pascal Medical" class="logo">
-                </a>
-            </div>
-            
-            <nav class="main-nav">
-                <div class="header-item nav-item dropdown">
-                    <a href="{% url 'about' %}" class="nav-link">О компании</a>
-                    <div class="dropdown-menu">
-                        <a href="{% url 'documents' %}" class="dropdown-item">Документы</a>
-                        <a href="{% url 'news_list' %}" class="dropdown-item">Новости</a>
-                        <a href="{% url 'vacancies' %}" class="dropdown-item">Вакансии</a>
-                        <a href="{% url 'gallery' %}" class="dropdown-item">Фотогалерея</a>
-                    </div>
-                </div>
-                
-                <div class="header-item nav-item dropdown">
-                    <a href="{% url 'home' %}#services" class="nav-link">Услуги</a>
-                    <div class="dropdown-menu">
-                        <a href="{% url 'service' %}?type=manufacturing" class="dropdown-item">Изготовление пластиковых изделий</a>
-                        <a href="{% url 'service' %}?type=assembly" class="dropdown-item">Сборка</a>
-                        <a href="{% url 'service' %}?type=packaging" class="dropdown-item">Упаковка</a>
-                        <a href="{% url 'service' %}?type=sterilization" class="dropdown-item">Стерилизация</a>
-                    </div>
-                </div>
-                
-                <div class="header-item nav-item dropdown">
-                    <a href="{% url 'home' %}#products" class="nav-link">Продукция</a>
-                    <div class="dropdown-menu">
-                        <a href="{% url 'product_category' %}?cat=1" class="dropdown-item">Шприцы инъекционные однократного применения</a>
-                        <a href="{% url 'product_category' %}?cat=2" class="dropdown-item">Шприцы с двумя иглами</a>
-                        <a href="{% url 'product_category' %}?cat=3" class="dropdown-item">Шприцы для инсулина</a>
-                        <a href="{% url 'product_category' %}?cat=4" class="dropdown-item">Инфузионные и трансфузионные системы</a>
-                        <a href="{% url 'product_category' %}?cat=5" class="dropdown-item">Иглы инъекционные стерильные</a>
-                        <a href="{% url 'product_category' %}?cat=6" class="dropdown-item">Иглы инъекционные нестерильные</a>
-                    </div>
-                </div>
-                
-                <div class="header-item nav-item">
-                    <a href="{% url 'instructions' %}" class="nav-link nav-link-multiline">Информационные<br>материалы</a>
-                </div>
-                
-                <div class="header-item nav-item">
-                    <a href="{% url 'contacts' %}" class="nav-link">Контакты</a>
-                </div>
-            </nav>
-            
-            <div class="header-actions">
-                <div class="header-item search-wrapper">
-                    <button class="search-btn" id="searchBtn">
-                        <img src="{% static 'img/лупа.png' %}" alt="Поиск" class="search-icon">
-                    </button>
-                </div>
-                <div class="header-item phone-section">
-                    <img src="{% static 'img/трубка.png' %}" alt="Телефон" class="phone-icon">
-                    <button class="phone-link" id="phoneBtn" data-phone="+74951502080">+7 495 150 20 80</button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div class="search-overlay" id="searchOverlay">
-        <div class="search-container">
-            <input type="text" class="search-input" placeholder="Поиск по сайту..." id="searchInput">
-            <button class="search-close" id="searchClose">
-                <span>&times;</span>
-            </button>
-        </div>
-        <div class="search-results" id="searchResults"></div>
-    </div>
+    {% include 'includes/header.html' %}
 
     <div class="toast" id="toast">Номер скопирован!</div>
 
@@ -125,44 +53,7 @@
         </div>
     </section>
 
-    <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-left">
-                <a href="{% url 'home' %}" class="footer-logo-link">
-                    <img src="{% static 'img/logo.svg' %}" alt="Pascal Medical" class="footer-logo-img">
-                </a>
-                <p class="footer-copyright">© 2016-2025<br>ООО "ПАСКАЛЬ МЕДИКАЛ"</p>
-            </div>
-            
-            <div class="footer-center">
-                <div class="badges">
-                    <div class="badge">
-                        <svg width="60" height="60" viewBox="0 0 60 60">
-                            <circle cx="30" cy="30" r="28" fill="none" stroke="#4DA5A3" stroke-width="2"/>
-                            <text x="30" y="35" text-anchor="middle" font-size="14" fill="#4DA5A3" font-weight="bold">ISO</text>
-                        </svg>
-                    </div>
-                    <div class="badge">
-                        <svg width="60" height="60" viewBox="0 0 60 60">
-                            <rect x="5" y="5" width="50" height="50" rx="5" fill="none" stroke="#5B3A99" stroke-width="2"/>
-                            <text x="30" y="25" text-anchor="middle" font-size="10" fill="#5B3A99" font-weight="bold">ОЭЗ</text>
-                            <text x="30" y="38" text-anchor="middle" font-size="9" fill="#5B3A99">Дубна</text>
-                        </svg>
-                    </div>
-                    <div class="badge">
-                        <svg width="60" height="60" viewBox="0 0 60 60">
-                            <path d="M30 5L35 20H50L38 30L43 45L30 36L17 45L22 30L10 20H25L30 5Z" fill="none" stroke="#4DA5A3" stroke-width="2"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-right">
-                <p class="footer-address">141981 РФ,<br>Московская обл., г. Дубна,<br>ул. Электронная, д. 8, к. 1</p>
-                <p class="footer-phone">Тел. <button class="footer-phone-link" id="footerPhoneBtn" data-phone="+74951502080">+7(495) 150 20 80</button></p>
-            </div>
-        </div>
-    </footer>
+    {% include 'includes/footer.html' %}
 
     <script src="{% static 'js/product-detail.js' %}"></script>
 </body>

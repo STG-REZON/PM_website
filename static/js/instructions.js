@@ -1,17 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const flipCard = document.getElementById('flipCard');
-    const flipToBack = document.getElementById('flipToBack');
-    const flipToFront = document.getElementById('flipToFront');
+    const photoCards = document.querySelectorAll('.photo-card');
     
-    // Переворот на заднюю сторону
-    flipToBack.addEventListener('click', function(e) {
-        e.stopPropagation();
-        flipCard.classList.add('flipped');
+    photoCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            e.stopPropagation();
+            this.classList.toggle('flipped');
+        });
+        card.style.cursor = 'pointer';
     });
     
-    // Возврат на переднюю сторону
-    flipToFront.addEventListener('click', function(e) {
-        e.stopPropagation();
-        flipCard.classList.remove('flipped');
-    });
+    console.log('Instructions ready — full text distributed across 6 stages');
 });

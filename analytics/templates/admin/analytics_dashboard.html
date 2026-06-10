@@ -2,211 +2,521 @@
 {% load static %}
 
 {% block extrastyle %}
+{{ block.super }}
 <style>
-    .dashboard-container {
-        padding: 20px;
+    #content h1 {
+        margin-bottom: 34px !important;
+        color: #3f2878 !important;
+        font-size: clamp(30px, 2.6vw, 42px) !important;
+        font-weight: 650 !important;
+        letter-spacing: -0.035em !important;
     }
-    .stats-cards {
+
+    #content h1::after {
+        width: 76px !important;
+        height: 3px !important;
+        bottom: -12px !important;
+    }
+
+    .analytics-panel {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-        margin-bottom: 30px;
+        gap: 24px;
+        margin-top: 10px;
     }
-    .stat-card {
-        background: white;
-        border-radius: 12px;
-        padding: 20px;
-        text-align: center;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+    .analytics-summary {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
     }
-    .stat-number {
-        font-size: 36px;
-        font-weight: bold;
-        color: #5B3A99;
+
+    .metric-card,
+    .analytics-card {
+        border: 1px solid rgba(91, 58, 153, 0.1);
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 14px 36px rgba(22, 30, 54, 0.08);
+        backdrop-filter: blur(14px) saturate(135%);
     }
-    .stat-label {
-        font-size: 14px;
-        color: #666;
-        margin-top: 8px;
+
+    .metric-card {
+        position: relative;
+        overflow: hidden;
+        min-height: 116px;
+        padding: 20px 22px;
+        border-radius: 24px;
     }
-    .chart-container {
-        background: white;
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 30px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+    .metric-card::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 18px;
+        bottom: 18px;
+        width: 4px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, #4da5a3, #5b3a99);
     }
-    .chart-title {
+
+    .metric-label {
+        color: #778095;
+        font-size: 12px;
+        font-weight: 650;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .metric-value {
+        margin-top: 10px;
+        color: #3f2878;
+        font-size: clamp(28px, 2.5vw, 40px);
+        font-weight: 700;
+        letter-spacing: -0.045em;
+    }
+
+    .metric-note {
+        margin-top: 4px;
+        color: #667085;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .analytics-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.45fr) minmax(340px, 0.8fr);
+        gap: 22px;
+    }
+
+    .analytics-columns {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .analytics-trio {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .analytics-card {
+        position: relative;
+        overflow: hidden;
+        padding: 24px;
+        border-radius: 26px;
+    }
+
+    .analytics-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto;
+        height: 3px;
+        background: linear-gradient(90deg, #4da5a3, #5b3a99, transparent);
+    }
+
+    .analytics-card-title {
+        margin: 0 0 16px;
+        color: #3f2878;
         font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 15px;
-        color: #333;
+        font-weight: 650;
+        letter-spacing: -0.015em;
     }
-    .two-columns {
+
+    .analytics-card-subtitle {
+        margin: -8px 0 18px;
+        color: #7a8194;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .analytics-list {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        margin-bottom: 30px;
+        gap: 10px;
     }
-    .popular-list {
-        background: white;
-        border-radius: 12px;
-        padding: 20px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+    .analytics-list-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 14px;
+        min-height: 52px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: rgba(245, 246, 250, 0.74);
+        border: 1px solid rgba(91, 58, 153, 0.07);
     }
-    .popular-item {
-        padding: 8px 0;
-        border-bottom: 1px solid #eee;
+
+    .analytics-list-name {
+        min-width: 0;
+        color: #172033;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.35;
+    }
+
+    .analytics-list-meta {
+        display: block;
+        margin-top: 3px;
+        color: #8790a4;
+        font-size: 12px;
+        font-weight: 500;
+        word-break: break-all;
+    }
+
+    .analytics-list-count {
+        padding: 7px 11px;
+        border-radius: 999px;
+        color: #0f766e;
+        background: rgba(77, 165, 163, 0.13);
+        font-size: 12px;
+        font-weight: 650;
+        white-space: nowrap;
+    }
+
+    .funnel-list {
+        display: grid;
+        gap: 14px;
+    }
+
+    .funnel-row-head {
         display: flex;
         justify-content: space-between;
+        gap: 12px;
+        color: #172033;
+        font-size: 14px;
+        font-weight: 600;
     }
-    .popular-item:last-child {
-        border-bottom: none;
+
+    .funnel-track {
+        height: 10px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: rgba(91, 58, 153, 0.08);
     }
-    .popular-name {
-        color: #333;
+
+    .funnel-fill {
+        height: 100%;
+        min-width: 5px;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #4da5a3, #5b3a99);
     }
-    .popular-count {
-        color: #5B3A99;
-        font-weight: bold;
+
+    .empty-state {
+        padding: 16px;
+        border-radius: 16px;
+        color: #7a8194;
+        background: rgba(91, 58, 153, 0.06);
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    @media (max-width: 1180px) {
+        .analytics-summary,
+        .analytics-trio {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .analytics-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 760px) {
+        .analytics-summary,
+        .analytics-columns,
+        .analytics-trio {
+            grid-template-columns: 1fr;
+        }
+
+        .metric-card,
+        .analytics-card {
+            border-radius: 20px;
+            padding: 18px;
+        }
     }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %}
 
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">Панель</a> &rsaquo; Аналитика
+</div>
+{% endblock %}
+
 {% block content %}
-<div class="dashboard-container">
-    <h1>📊 Дашборд аналитики</h1>
-    <p>Статистика за последние 30 дней</p>
-    
-    <div class="stats-cards">
-        <div class="stat-card">
-            <div class="stat-number">{{ total_views }}</div>
-            <div class="stat-label">📄 Просмотров страниц</div>
+<div class="analytics-panel">
+    <section class="analytics-summary">
+        <div class="metric-card">
+            <div class="metric-label">Просмотры</div>
+            <div class="metric-value">{{ total_views }}</div>
+            <div class="metric-note">страниц всего</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-number">{{ total_searches }}</div>
-            <div class="stat-label">🔍 Поисковых запросов</div>
+        <div class="metric-card">
+            <div class="metric-label">Поиск</div>
+            <div class="metric-value">{{ total_searches }}</div>
+            <div class="metric-note">запросов всего</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-number">{{ total_chats }}</div>
-            <div class="stat-label">💬 Сообщений в чате</div>
+        <div class="metric-card">
+            <div class="metric-label">Чат</div>
+            <div class="metric-value">{{ total_chats }}</div>
+            <div class="metric-note">{{ avg_response_time }} сек. средний ответ</div>
         </div>
-        <div class="stat-card">
-            <div class="stat-number">{{ total_sessions }}</div>
-            <div class="stat-label">👥 Уникальных сессий</div>
+        <div class="metric-card">
+            <div class="metric-label">Сессии</div>
+            <div class="metric-value">{{ total_sessions }}</div>
+            <div class="metric-note">уникальных посещений</div>
         </div>
-    </div>
-    
-    <div class="chart-container">
-        <div class="chart-title">📈 Просмотры страниц по дням</div>
-        <canvas id="viewsChart" height="100"></canvas>
-    </div>
-    
-    <div class="two-columns">
-        <div class="chart-container">
-            <div class="chart-title">🔍 Поисковые запросы по дням</div>
-            <canvas id="searchesChart" height="200"></canvas>
+    </section>
+
+    <section class="analytics-card">
+        <h2 class="analytics-card-title">Динамика за 30 дней</h2>
+        <p class="analytics-card-subtitle">Просмотры, поиск, чат и события в одном графике.</p>
+        <canvas id="activityChart" height="112"></canvas>
+    </section>
+
+    <section class="analytics-grid">
+        <div class="analytics-card">
+            <h2 class="analytics-card-title">Активность по часам</h2>
+            <p class="analytics-card-subtitle">Когда посетители чаще заходят на сайт.</p>
+            <canvas id="hoursChart" height="190"></canvas>
         </div>
-        <div class="chart-container">
-            <div class="chart-title">💬 Сообщения в чате по дням</div>
-            <canvas id="chatsChart" height="200"></canvas>
-        </div>
-    </div>
-    
-    <div class="two-columns">
-        <div class="popular-list">
-            <div class="chart-title">🔥 Популярные страницы</div>
-            {% for page in popular_pages %}
-            <div class="popular-item">
-                <span class="popular-name">{{ page.page_title|default:page.page_url|truncatechars:40 }}</span>
-                <span class="popular-count">{{ page.count }} просмотров</span>
+
+        <div class="analytics-card">
+            <h2 class="analytics-card-title">Воронка</h2>
+            <p class="analytics-card-subtitle">Ключевые точки пользовательского пути.</p>
+            <div class="funnel-list">
+                {% with max_count=funnel_stats.0.count|default:1 %}
+                    {% for step in funnel_stats %}
+                        <div>
+                            <div class="funnel-row-head">
+                                <span>{{ step.name }}</span>
+                                <span>{{ step.count }}</span>
+                            </div>
+                            <div class="funnel-track">
+                                <div class="funnel-fill" style="width: {% widthratio step.count max_count 100 %}%;"></div>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="empty-state">Пока нет данных.</div>
+                    {% endfor %}
+                {% endwith %}
             </div>
-            {% empty %}
-            <div class="popular-item">Нет данных</div>
-            {% endfor %}
         </div>
-        
-        <div class="popular-list">
-            <div class="chart-title">🔍 Популярные поисковые запросы</div>
-            {% for search in popular_searches %}
-            <div class="popular-item">
-                <span class="popular-name">{{ search.query }}</span>
-                <span class="popular-count">{{ search.count }} раз</span>
+    </section>
+
+    <section class="analytics-trio">
+        <div class="analytics-card">
+            <h2 class="analytics-card-title">Разделы</h2>
+            <canvas id="groupsChart" height="205"></canvas>
+        </div>
+        <div class="analytics-card">
+            <h2 class="analytics-card-title">Устройства</h2>
+            <canvas id="devicesChart" height="205"></canvas>
+        </div>
+        <div class="analytics-card">
+            <h2 class="analytics-card-title">Браузеры</h2>
+            <canvas id="browsersChart" height="205"></canvas>
+        </div>
+    </section>
+
+    <section class="analytics-columns">
+        <div class="analytics-card">
+            <h2 class="analytics-card-title">Популярные страницы</h2>
+            <div class="analytics-list">
+                {% for page in popular_pages %}
+                    <div class="analytics-list-row">
+                        <span class="analytics-list-name">
+                            {{ page.page_title|default:page.page_url|truncatechars:52 }}
+                            <span class="analytics-list-meta">{{ page.page_url }}</span>
+                        </span>
+                        <span class="analytics-list-count">{{ page.count }}</span>
+                    </div>
+                {% empty %}
+                    <div class="empty-state">Пока нет данных.</div>
+                {% endfor %}
             </div>
-            {% empty %}
-            <div class="popular-item">Нет данных</div>
-            {% endfor %}
         </div>
-    </div>
-    
-    <div class="chart-container">
-        <div class="chart-title">🤖 Откуда брал ответы чат-бот</div>
-        <canvas id="sourcesChart" height="150"></canvas>
-    </div>
+
+        <div class="analytics-card">
+            <h2 class="analytics-card-title">Поисковые запросы</h2>
+            <div class="analytics-list">
+                {% for search in popular_searches %}
+                    <div class="analytics-list-row">
+                        <span class="analytics-list-name">{{ search.query }}</span>
+                        <span class="analytics-list-count">{{ search.count }}</span>
+                    </div>
+                {% empty %}
+                    <div class="empty-state">Пока нет запросов.</div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="analytics-columns">
+        <div class="analytics-card">
+            <h2 class="analytics-card-title">Поиск без результата</h2>
+            <div class="analytics-list">
+                {% for search in zero_searches %}
+                    <div class="analytics-list-row">
+                        <span class="analytics-list-name">{{ search.query }}</span>
+                        <span class="analytics-list-count">{{ search.count }}</span>
+                    </div>
+                {% empty %}
+                    <div class="empty-state">Нулевых запросов пока нет.</div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="analytics-card">
+            <h2 class="analytics-card-title">Клики из поиска</h2>
+            <div class="analytics-list">
+                {% for click in search_result_clicks %}
+                    <div class="analytics-list-row">
+                        <span class="analytics-list-name">
+                            {{ click.event_label|default:"Без названия" }}
+                            <span class="analytics-list-meta">{{ click.target_url }}</span>
+                        </span>
+                        <span class="analytics-list-count">{{ click.count }}</span>
+                    </div>
+                {% empty %}
+                    <div class="empty-state">Клики появятся после переходов из поиска.</div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
 </div>
 
 <script>
 const viewsData = {{ views_by_day|safe }};
 const searchesData = {{ searches_by_day|safe }};
 const chatsData = {{ chats_by_day|safe }};
+const eventsData = {{ events_by_day|safe }};
+const hoursData = {{ views_by_hour|safe }};
 const sourcesData = {{ chat_sources|safe }};
+const pageGroupsData = {{ page_groups_json|safe }};
+const devicesData = {{ device_stats_json|safe }};
+const browsersData = {{ browser_stats_json|safe }};
 
-if (viewsData.length) {
-    new Chart(document.getElementById('viewsChart'), {
+const palette = ['#5B3A99', '#4DA5A3', '#FFB020', '#2F80ED', '#F04438', '#7C3AED', '#12B76A'];
+const textColor = '#462878';
+const mutedColor = '#667085';
+const gridColor = 'rgba(91, 58, 153, 0.08)';
+
+function chartFont(weight = '600') {
+    return { family: 'Commissioner, Manrope, Arial, sans-serif', weight };
+}
+
+function baseOptions(extra = {}) {
+    return {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+            legend: {
+                labels: {
+                    color: textColor,
+                    boxWidth: 12,
+                    boxHeight: 12,
+                    font: chartFont('600')
+                }
+            },
+            tooltip: {
+                backgroundColor: 'rgba(23, 32, 51, 0.92)',
+                padding: 12,
+                titleFont: chartFont('650'),
+                bodyFont: chartFont('500')
+            }
+        },
+        scales: {
+            x: {
+                ticks: { color: mutedColor, font: chartFont('500') },
+                grid: { color: gridColor }
+            },
+            y: {
+                beginAtZero: true,
+                ticks: { color: mutedColor, precision: 0, font: chartFont('500') },
+                grid: { color: gridColor }
+            }
+        },
+        ...extra
+    };
+}
+
+function makeSeriesMap(...series) {
+    const labels = [...new Set(series.flatMap((items) => items.map((item) => item.day)))];
+    return labels.map((label) => ({
+        label,
+        views: viewsData.find((item) => item.day === label)?.count || 0,
+        searches: searchesData.find((item) => item.day === label)?.count || 0,
+        chats: chatsData.find((item) => item.day === label)?.count || 0,
+        events: eventsData.find((item) => item.day === label)?.count || 0
+    }));
+}
+
+const activityData = makeSeriesMap(viewsData, searchesData, chatsData, eventsData);
+if (activityData.length) {
+    new Chart(document.getElementById('activityChart'), {
         type: 'line',
         data: {
-            labels: viewsData.map(d => d.day),
+            labels: activityData.map((item) => item.label),
+            datasets: [
+                { label: 'Просмотры', data: activityData.map((item) => item.views), borderColor: '#5B3A99', backgroundColor: 'rgba(91, 58, 153, 0.1)', tension: 0.35, fill: true, pointRadius: 2 },
+                { label: 'Поиск', data: activityData.map((item) => item.searches), borderColor: '#4DA5A3', backgroundColor: 'rgba(77, 165, 163, 0.1)', tension: 0.35, fill: true, pointRadius: 2 },
+                { label: 'Чат', data: activityData.map((item) => item.chats), borderColor: '#FFB020', tension: 0.35, fill: false, pointRadius: 2 },
+                { label: 'События', data: activityData.map((item) => item.events), borderColor: '#2F80ED', tension: 0.35, fill: false, pointRadius: 2 }
+            ]
+        },
+        options: baseOptions()
+    });
+}
+
+if (hoursData.length) {
+    new Chart(document.getElementById('hoursChart'), {
+        type: 'bar',
+        data: {
+            labels: hoursData.map((item) => item.hour),
             datasets: [{
                 label: 'Просмотры',
-                data: viewsData.map(d => d.count),
-                borderColor: '#5B3A99',
-                backgroundColor: 'rgba(91, 58, 153, 0.1)',
-                fill: true
+                data: hoursData.map((item) => item.count),
+                backgroundColor: 'rgba(77, 165, 163, 0.74)',
+                borderRadius: 8
             }]
+        },
+        options: baseOptions({ plugins: { legend: { display: false } } })
+    });
+}
+
+function makeDoughnut(elementId, rows) {
+    if (!rows.length) return;
+    new Chart(document.getElementById(elementId), {
+        type: 'doughnut',
+        data: {
+            labels: rows.map((item) => item.name || item.response_source || 'Неизвестно'),
+            datasets: [{
+                data: rows.map((item) => item.count),
+                backgroundColor: palette,
+                borderWidth: 0,
+                hoverOffset: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            cutout: '64%',
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: textColor,
+                        padding: 12,
+                        font: chartFont('550')
+                    }
+                }
+            }
         }
     });
 }
 
-if (searchesData.length) {
-    new Chart(document.getElementById('searchesChart'), {
-        type: 'bar',
-        data: {
-            labels: searchesData.map(d => d.day),
-            datasets: [{
-                label: 'Поисковые запросы',
-                data: searchesData.map(d => d.count),
-                backgroundColor: '#4DA5A3'
-            }]
-        }
-    });
-}
-
-if (chatsData.length) {
-    new Chart(document.getElementById('chatsChart'), {
-        type: 'bar',
-        data: {
-            labels: chatsData.map(d => d.day),
-            datasets: [{
-                label: 'Сообщения в чате',
-                data: chatsData.map(d => d.count),
-                backgroundColor: '#5B3A99'
-            }]
-        }
-    });
-}
-
-if (sourcesData.length) {
-    new Chart(document.getElementById('sourcesChart'), {
-        type: 'pie',
-        data: {
-            labels: sourcesData.map(d => d.response_source || 'unknown'),
-            datasets: [{
-                data: sourcesData.map(d => d.count),
-                backgroundColor: ['#5B3A99', '#4DA5A3', '#FF9800', '#F44336', '#9C27B0']
-            }]
-        }
-    });
-}
+makeDoughnut('groupsChart', pageGroupsData);
+makeDoughnut('devicesChart', devicesData);
+makeDoughnut('browsersChart', browsersData);
 </script>
 {% endblock %}

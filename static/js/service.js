@@ -142,7 +142,8 @@ function initSlider(images) {
     images.forEach((img, index) => {
         const slide = document.createElement('div');
         slide.className = 'slider-slide';
-        slide.innerHTML = `<img src="${img}" alt="Слайд ${index + 1}">`;
+        const imageSrc = img.startsWith('/static/') ? img : `/static/${img}`;
+        slide.innerHTML = `<img src="${imageSrc}" alt="Слайд ${index + 1}">`;
         wrapper.appendChild(slide);
         
         // Добавление точек
@@ -271,7 +272,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const email = document.getElementById('cfEmail').value.trim();
       const message = document.getElementById('cfMessage').value.trim();
       const serviceName = document.getElementById('cfService').value.trim();
-      const consent = document.getElementById('cfConsent').checked;
+      const consentEl = document.getElementById('cfConsent');
+      const consent = consentEl ? consentEl.checked : true;
 
       if (!name || !phone || !consent) {
         statusEl.textContent = 'Проверьте корректность имени, телефона и согласия.';

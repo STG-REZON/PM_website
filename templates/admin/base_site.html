@@ -1,0 +1,33 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | PASCAL MEDICAL{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/admin-panel.css' %}?v=20260604-admin-header-clean">
+{% endblock %}
+
+{% block branding %}
+<div id="site-name" class="pascal-admin-brand">
+    <a href="{% url 'admin:index' %}">
+        <img src="{% static 'img/logo.svg' %}" alt="PASCAL MEDICAL" class="pascal-admin-logo">
+        <span class="pascal-admin-title">PASCAL MEDICAL</span>
+    </a>
+</div>
+{% endblock %}
+
+{% block nav-global %}
+<nav class="pascal-admin-nav">
+    <a href="{% url 'admin:index' %}">Панель</a>
+    <a href="/admin/analytics-dashboard/">Аналитика</a>
+    <a href="/" target="_blank" rel="noopener noreferrer">Открыть сайт</a>
+    <form action="{% url 'admin:logout' %}" method="post" class="pascal-admin-logout-form">
+        {% csrf_token %}
+        <button type="submit" class="pascal-admin-logout">Выход</button>
+    </form>
+</nav>
+{% endblock %}

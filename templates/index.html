@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+﻿{% extends 'base.html' %}
 {% load static %}
 
 {% block title %}Pascal Medical - Главная{% endblock %}
@@ -6,59 +6,80 @@
 {% block content %}
 <!-- HERO SECTION -->
 <section class="hero-section" id="top">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <h1 class="hero-title">Полный цикл производства медицинской продукции в России</h1>
+    <div class="main-visual-wrap" style="display:block!important;position:relative!important;width:100%!important;height:calc(100vh - 95px)!important;min-height:560px!important;overflow:hidden!important;background:transparent!important;">
+        <img src="/static/img/hero.png?v=20260603-hero-text" alt="Pascal Medical" class="main-visual-img" style="display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;opacity:1!important;visibility:visible!important;">
+        <div class="main-hero-copy" aria-label="Преимущества Pascal Medical">
+            <h1 class="main-hero-title">
+                <span>ПАСКАЛЬ</span>
+                <span>МЕДИКАЛ — это</span>
+            </h1>
+            <ol class="main-hero-list">
+                <li>
+                    <span class="main-hero-icon"><img src="/static/img/logo_sr.png?v=20260603" alt=""></span>
+                    <span>Современный производственный комплекс</span>
+                </li>
+                <li>
+                    <span class="main-hero-icon"><img src="/static/img/logo_sr.png?v=20260603" alt=""></span>
+                    <span>Контроль качества на каждом этапе</span>
+                </li>
+                <li>
+                    <span class="main-hero-icon"><img src="/static/img/logo_sr.png?v=20260603" alt=""></span>
+                    <span>Полный цикл производства</span>
+                </li>
+                <li>
+                    <span class="main-hero-icon"><img src="/static/img/logo_sr.png?v=20260603" alt=""></span>
+                    <span>Собственная газовая стерилизация</span>
+                </li>
+                <li>
+                    <span class="main-hero-icon"><img src="/static/img/logo_sr.png?v=20260603" alt=""></span>
+                    <span>Возможность контрактного производства</span>
+                </li>
+            </ol>
+        </div>
     </div>
 </section>
 
 <!-- УСЛУГИ - СЕТКА 2×2 -->
 <section class="services-section" id="services">
     <div class="container">
-        <h2 class="section-title">Услуги</h2>
-        <div class="services-circular">
-            <div class="services-grid">
-                <!-- Верхняя левая -->
-                <div class="service-card service-card-1">
-                    <div class="service-card-inner">
-                        <img src="{% static 'img/img_photo/2_2.jpg' %}" alt="Изготовление пластиковых изделий" class="service-img">
-                        <h3 class="service-title"><span>Изготовление пластиковых изделий</span></h3>
-                    </div>
-                </div>
-                
-                <!-- Верхняя правая -->
-                <div class="service-card service-card-2">
-                    <div class="service-card-inner">
-                        <img src="{% static 'img/img_photo/3_1.jpg' %}" alt="Сборка" class="service-img">
-                        <h3 class="service-title"><span>Сборка</span></h3>
-                    </div>
-                </div>
-                
-                <!-- Нижняя левая -->
-                <div class="service-card service-card-3">
-                    <div class="service-card-inner">
-                        <img src="{% static 'img/img_photo/6_1.jpg' %}" alt="Упаковка" class="service-img">
-                        <h3 class="service-title"><span>Упаковка</span></h3>
-                    </div>
-                </div>
-                
-                <!-- Нижняя правая -->
-                <div class="service-card service-card-4">
-                    <div class="service-card-inner">
-                        <img src="{% static 'img/img_photo/7_1.jpg' %}" alt="Стерилизация" class="service-img">
-                        <h3 class="service-title"><span>Стерилизация</span></h3>
-                    </div>
+        <div class="services-concepts">
+            <div class="services-concepts-head">
+                <div>
+                    <h2 class="section-title">Услуги</h2>
                 </div>
             </div>
-            
-            <!-- Центральный логотип -->
-            <div class="services-center">
-                <img src="{% static 'img/logo.svg' %}" alt="Pascal Medical" class="services-center-logo">
+
+            <div class="service-concept-panels">
+                <div class="service-concept-panel service-concept-bento service-concept-bento-final">
+                    <a href="{% url 'service' %}?type=manufacturing" class="service-bento-card service-bento-card-large">
+                        <img src="{% static 'img/img_photo/2_2.jpg' %}" alt="Изготовление пластиковых изделий">
+                        <span class="service-card-index">01</span>
+                        <h3>Изготовление пластиковых изделий</h3>
+                        <p>Точные пластиковые компоненты и изделия на современном оборудовании.</p>
+                    </a>
+                    <a href="{% url 'service' %}?type=assembly" class="service-bento-card">
+                        <img src="{% static 'img/img_photo/3_1.jpg' %}" alt="Сборка">
+                        <span class="service-card-index">02</span>
+                        <h3>Сборка</h3>
+                        <p>Комплектация, контроль и подготовка изделий к следующему этапу.</p>
+                    </a>
+                    <a href="{% url 'service' %}?type=packaging" class="service-bento-card">
+                        <img src="{% static 'img/img_photo/6_1.jpg' %}" alt="Упаковка">
+                        <span class="service-card-index">03</span>
+                        <h3>Упаковка</h3>
+                        <p>Индивидуальная и групповая упаковка медицинской продукции.</p>
+                    </a>
+                    <a href="{% url 'service' %}?type=sterilization" class="service-bento-card service-bento-card-wide">
+                        <img src="{% static 'img/img_photo/7_1.jpg' %}" alt="Стерилизация">
+                        <span class="service-card-index">04</span>
+                        <h3>Стерилизация</h3>
+                        <p>Собственная газовая стерилизация для полного производственного цикла.</p>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </section>
-
 <!-- PRODUCTS -->
 <section class="products-section" id="products">
     <div class="container">

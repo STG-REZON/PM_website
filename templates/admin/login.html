@@ -1,0 +1,76 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block title %}Вход в админ-панель | PASCAL MEDICAL{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/admin-login.css' %}?v=20260604-login-logo-title-balance">
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} pascal-admin-login{% endblock %}
+
+{% block nav-sidebar %}{% endblock %}
+
+{% block content %}
+<main class="admin-login-page">
+    <section class="admin-login-hero" aria-label="PASCAL MEDICAL admin">
+        <div class="admin-login-brand">
+            <img src="{% static 'img/logo.svg' %}" alt="PASCAL MEDICAL" class="admin-login-logo">
+            <span class="admin-login-badge">Админ-панель</span>
+        </div>
+        <h1>
+            <span>Управление сайтом</span>
+            <strong>PASCAL MEDICAL</strong>
+        </h1>
+        <p>Единое рабочее пространство для контента, аналитики, новостей, ассистента и данных сайта.</p>
+        <div class="admin-login-stats">
+            <span>Analytics</span>
+            <span>Content</span>
+            <span>Support</span>
+        </div>
+    </section>
+
+    <section class="admin-login-card" aria-label="Форма входа">
+        <div class="admin-login-card-head">
+            <p class="admin-login-eyebrow">Добро пожаловать</p>
+            <h2>Вход</h2>
+            <p>Введите учётные данные администратора.</p>
+        </div>
+
+        {% if form.errors and not form.non_field_errors %}
+            <div class="admin-login-error">
+                Проверьте логин и пароль. Если доступ не получается восстановить, обратитесь к администратору.
+            </div>
+        {% endif %}
+
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                <div class="admin-login-error">{{ error }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <form action="{{ app_path }}" method="post" id="login-form" class="admin-login-form">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+
+            <label class="admin-login-field" for="{{ form.username.id_for_label }}">
+                <span>Логин</span>
+                {{ form.username }}
+            </label>
+
+            <label class="admin-login-field" for="{{ form.password.id_for_label }}">
+                <span>Пароль</span>
+                {{ form.password }}
+            </label>
+
+            <button type="submit" class="admin-login-submit">Войти в панель</button>
+        </form>
+
+        <p class="admin-login-note">Доступ только для сотрудников PASCAL MEDICAL.</p>
+    </section>
+</main>
+{% endblock %}
