@@ -9,24 +9,17 @@ __pycache__/
 *.pyo
 *.pyd
 *.so
-*.log
 *.pid
 
-# База данных (не выгружаем)
+# База данных
 db.sqlite3
 *.db
 *.sqlite3
 
-# Медиа-файлы (загруженные картинки)
+# Медиа-файлы, загруженные пользователями
 media/
-*.jpg
-*.png
-*.jpeg
-*.webp
-*.svg
-*.ico
 
-# Статика (скомпилированная)
+# Статика, собранная через collectstatic
 staticfiles/
 static_collected/
 
@@ -39,10 +32,9 @@ static_collected/
 .DS_Store
 Thumbs.db
 
-# Секреты и конфиги с паролями
+# Секреты и локальные настройки
 .env
 secrets.py
-config.py
 settings_local.py
 *.key
 *.pem

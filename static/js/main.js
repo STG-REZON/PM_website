@@ -218,28 +218,42 @@ function scoreSearchItem(item, terms, query) {
     return score;
 }
 
-function saveSearchAnalytics(query, count) {
-    if (!query || query.length < 2) return;
+function sendAnalyticsPayload(url, payload, useBeacon = false) {
+    const body = JSON.stringify(payload);
 
-    fetch('/analytics/api/search/', {
+    if (useBeacon && navigator.sendBeacon) {
+        const blob = new Blob([body], { type: 'application/json' });
+        if (navigator.sendBeacon(url, blob)) {
+            return Promise.resolve();
+        }
+    }
+
+    return fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query, results_count: count })
+        body,
+        keepalive: true
     }).catch(() => {});
 }
 
+function saveSearchAnalytics(query, count) {
+    if (!query || query.length < 2) return;
+
+    sendAnalyticsPayload('/analytics/api/search/', { query, results_count: count });
+}
+
 function trackAnalyticsEvent(eventType, eventLabel = '', targetUrl = '', metadata = {}) {
-    fetch('/analytics/api/event/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+    return sendAnalyticsPayload(
+        '/analytics/api/event/',
+        {
             event_type: eventType,
             event_label: eventLabel,
             page_url: window.location.pathname + window.location.search,
             target_url: targetUrl,
             metadata
-        })
-    }).catch(() => {});
+        },
+        eventType === 'search_result_click'
+    );
 }
 
 let searchAnalyticsTimer = null;
@@ -301,13 +315,15 @@ function renderSearchResults(query) {
             </span>
             <span class="search-result-arrow">→</span>
         `;
-        item.addEventListener('click', () => {
+        item.addEventListener('click', (event) => {
+            event.preventDefault();
             trackAnalyticsEvent('search_result_click', result.title, result.url, {
                 query,
                 result_type: result.type,
                 position: index + 1
             });
             closeSearch();
+            window.location.href = result.url;
         });
         searchResults.appendChild(item);
     });

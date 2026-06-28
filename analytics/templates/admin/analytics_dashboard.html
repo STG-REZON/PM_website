@@ -26,7 +26,7 @@
 
     .analytics-summary {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
         gap: 14px;
     }
 
@@ -119,6 +119,10 @@
         font-size: 18px;
         font-weight: 650;
         letter-spacing: -0.015em;
+    }
+
+    .analytics-card canvas {
+        margin-top: 10px;
     }
 
     .analytics-card-subtitle {
@@ -257,6 +261,11 @@
             <div class="metric-note">запросов всего</div>
         </div>
         <div class="metric-card">
+            <div class="metric-label">Клики из поиска</div>
+            <div class="metric-value">{{ search_clicks_count }}</div>
+            <div class="metric-note">{{ search_click_rate }}% от запросов за 30 дней</div>
+        </div>
+        <div class="metric-card">
             <div class="metric-label">Чат</div>
             <div class="metric-value">{{ total_chats }}</div>
             <div class="metric-note">{{ avg_response_time }} сек. средний ответ</div>
@@ -369,6 +378,7 @@
 
         <div class="analytics-card">
             <h2 class="analytics-card-title">Клики из поиска</h2>
+            <p class="analytics-card-subtitle">Переходы по карточкам результатов: что реально открывают после ввода запроса.</p>
             <div class="analytics-list">
                 {% for click in search_result_clicks %}
                     <div class="analytics-list-row">
@@ -379,7 +389,7 @@
                         <span class="analytics-list-count">{{ click.count }}</span>
                     </div>
                 {% empty %}
-                    <div class="empty-state">Клики появятся после переходов из поиска.</div>
+                    <div class="empty-state">Пока нет зафиксированных переходов. Откройте поиск на сайте, введите запрос и нажмите на найденный результат.</div>
                 {% endfor %}
             </div>
         </div>

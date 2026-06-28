@@ -255,6 +255,7 @@ div.breadcrumbs {
 .deletelink,
 .viewlink {
     font-weight: 700;
+    background-image: none !important;
 }
 
 .object-tools {
@@ -998,4 +999,1287 @@ div.help,
 form div.help,
 div.help li {
     font-weight: 500 !important;
+}
+
+/* Custom admin home */
+.pascal-admin-home {
+    display: grid;
+    gap: 22px;
+}
+
+.pascal-admin-command,
+.pascal-admin-feature-card,
+.pascal-admin-side-panel,
+.pascal-admin-app-card {
+    border: 1px solid rgba(91, 58, 153, 0.1);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 16px 42px rgba(22, 30, 54, 0.075);
+    backdrop-filter: blur(16px) saturate(135%);
+}
+
+.pascal-admin-command {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 24px;
+    min-height: 188px;
+    padding: clamp(26px, 3vw, 40px);
+    border-radius: 30px;
+    background:
+        radial-gradient(circle at 92% 12%, rgba(91, 58, 153, 0.14), transparent 34%),
+        radial-gradient(circle at 12% 92%, rgba(77, 165, 163, 0.14), transparent 34%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(247, 250, 255, 0.88));
+}
+
+.pascal-admin-command::after {
+    content: "";
+    position: absolute;
+    left: clamp(26px, 3vw, 40px);
+    bottom: 0;
+    width: 118px;
+    height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--pm-teal), var(--pm-purple));
+}
+
+.pascal-admin-command-copy {
+    min-width: 0;
+}
+
+.pascal-admin-eyebrow,
+.pascal-admin-card-label {
+    display: inline-flex;
+    align-items: center;
+    width: max-content;
+    min-height: 28px;
+    padding: 0 11px;
+    border-radius: 999px;
+    color: var(--pm-purple-dark);
+    background: rgba(91, 58, 153, 0.07);
+    border: 1px solid rgba(91, 58, 153, 0.1);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.pascal-admin-command h1 {
+    display: block !important;
+    margin: 15px 0 0 !important;
+    color: #3f2878 !important;
+    font-size: clamp(34px, 4vw, 52px) !important;
+    font-weight: 650 !important;
+    line-height: 1 !important;
+    letter-spacing: -0.055em !important;
+}
+
+.pascal-admin-command h1::after {
+    display: none !important;
+}
+
+.pascal-admin-command p {
+    max-width: 650px;
+    margin: 16px 0 0;
+    color: #667085;
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.pascal-admin-command-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.pascal-admin-primary-action,
+.pascal-admin-secondary-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 650;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.pascal-admin-primary-action {
+    color: #fff !important;
+    background: linear-gradient(135deg, var(--pm-purple), var(--pm-teal));
+    box-shadow: 0 14px 28px rgba(91, 58, 153, 0.18);
+}
+
+.pascal-admin-secondary-action {
+    color: var(--pm-purple-dark) !important;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(91, 58, 153, 0.12);
+}
+
+.pascal-admin-primary-action:hover,
+.pascal-admin-secondary-action:hover {
+    transform: translateY(-2px);
+}
+
+.pascal-admin-workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.72fr);
+    gap: 18px;
+}
+
+.pascal-admin-feature-card,
+.pascal-admin-side-panel {
+    border-radius: 26px;
+}
+
+.pascal-admin-feature-card-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(230px, 0.44fr);
+    align-items: stretch;
+    gap: 22px;
+    padding: 26px;
+}
+
+.pascal-admin-feature-card h2 {
+    margin: 14px 0 0;
+    color: #2f1f62;
+    font-size: clamp(24px, 2.4vw, 34px);
+    font-weight: 650;
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+}
+
+.pascal-admin-feature-card p {
+    max-width: 580px;
+    margin: 14px 0 0;
+    color: #667085;
+    font-size: 15px;
+    line-height: 1.55;
+    font-weight: 500;
+}
+
+.pascal-admin-feature-links {
+    display: grid;
+    align-content: center;
+    gap: 9px;
+}
+
+.pascal-admin-feature-links a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 44px;
+    padding: 0 14px;
+    border-radius: 16px;
+    color: #3f2878 !important;
+    background: rgba(91, 58, 153, 0.055);
+    border: 1px solid rgba(91, 58, 153, 0.08);
+    font-size: 13px;
+    font-weight: 650;
+    text-decoration: none;
+}
+
+.pascal-admin-feature-links a::after {
+    content: "→";
+    color: var(--pm-teal);
+}
+
+.pascal-admin-feature-links a:hover {
+    color: #fff !important;
+    background: linear-gradient(135deg, var(--pm-purple), var(--pm-teal));
+}
+
+.pascal-admin-feature-links a:hover::after {
+    color: #fff;
+}
+
+.pascal-admin-side-panel {
+    padding: 24px;
+}
+
+.pascal-admin-checklist {
+    display: grid;
+    gap: 12px;
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: admin-checklist;
+}
+
+.pascal-admin-checklist li {
+    counter-increment: admin-checklist;
+    position: relative;
+    min-height: 48px;
+    padding: 12px 12px 12px 48px;
+    border-radius: 16px;
+    color: #445066;
+    background: rgba(245, 246, 250, 0.78);
+    border: 1px solid rgba(91, 58, 153, 0.07);
+    font-size: 14px;
+    line-height: 1.45;
+    font-weight: 500;
+}
+
+.pascal-admin-checklist li::before {
+    content: counter(admin-checklist);
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 999px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--pm-teal), var(--pm-purple));
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.pascal-admin-section {
+    display: grid;
+    gap: 16px;
+}
+
+.pascal-admin-section-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.pascal-admin-section-head span {
+    color: #3f2878;
+    font-size: 26px;
+    font-weight: 650;
+    letter-spacing: -0.04em;
+}
+
+.pascal-admin-section-head small {
+    display: block;
+    max-width: 760px;
+    margin-top: 5px;
+    color: #778095;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.pascal-admin-app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.pascal-admin-app-card {
+    overflow: hidden;
+    border-radius: 24px;
+}
+
+.pascal-admin-app-card h2 {
+    margin: 0;
+    padding: 16px 18px;
+    color: #3f2878;
+    background: linear-gradient(135deg, rgba(91, 58, 153, 0.08), rgba(77, 165, 163, 0.08));
+    border-bottom: 1px solid rgba(91, 58, 153, 0.08);
+    font-size: 15px;
+    font-weight: 650;
+}
+
+.pascal-admin-app-card h2 a {
+    color: #3f2878 !important;
+    text-decoration: none;
+}
+
+.pascal-admin-model-list {
+    display: grid;
+}
+
+.pascal-admin-model-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    min-height: 54px;
+    padding: 11px 16px;
+    border-top: 1px solid rgba(91, 58, 153, 0.06);
+}
+
+.pascal-admin-model-row:first-child {
+    border-top: 0;
+}
+
+.pascal-admin-model-row:hover {
+    background: rgba(77, 165, 163, 0.055);
+}
+
+.pascal-admin-model-row > a,
+.pascal-admin-model-row > span {
+    overflow: hidden;
+    color: #172033 !important;
+    font-size: 14px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.pascal-admin-model-actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.pascal-admin-model-actions a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 0 10px;
+    border-radius: 999px;
+    color: var(--pm-purple-dark) !important;
+    background: rgba(91, 58, 153, 0.065);
+    font-size: 12px;
+    font-weight: 650;
+    text-decoration: none;
+}
+
+.pascal-admin-model-actions a:hover {
+    color: #fff !important;
+    background: var(--pm-purple);
+}
+
+.pascal-admin-empty {
+    margin: 0;
+    padding: 20px;
+    border-radius: 18px;
+    color: #667085;
+    background: rgba(255, 255, 255, 0.82);
+}
+
+@media (max-width: 1120px) {
+    .pascal-admin-command,
+    .pascal-admin-workspace,
+    .pascal-admin-feature-card-main {
+        grid-template-columns: 1fr;
+    }
+
+    .pascal-admin-command-actions {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 720px) {
+    .pascal-admin-command-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .pascal-admin-section-head {
+        display: grid;
+    }
+
+    .pascal-admin-model-row {
+        grid-template-columns: 1fr;
+        align-items: start;
+    }
+}
+
+/* App index pages and admin sidebar cleanup */
+#nav-sidebar {
+    width: 310px;
+    padding: 18px 14px 26px;
+    border-right: 1px solid rgba(91, 58, 153, 0.1) !important;
+    background:
+        radial-gradient(circle at 0 0, rgba(77, 165, 163, 0.14), transparent 32%),
+        rgba(255, 255, 255, 0.78) !important;
+    box-shadow: 12px 0 36px rgba(22, 30, 54, 0.06);
+    backdrop-filter: blur(18px) saturate(135%);
+}
+
+#nav-sidebar .module {
+    margin: 0 0 18px;
+    border-radius: 22px !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+    box-shadow: 0 12px 30px rgba(22, 30, 54, 0.075) !important;
+}
+
+#nav-sidebar .module caption {
+    padding: 17px 18px !important;
+    border-radius: 22px 22px 0 0;
+    background: linear-gradient(135deg, rgba(91, 58, 153, 0.94), rgba(77, 165, 163, 0.9)) !important;
+    color: #fff !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+}
+
+#nav-sidebar table {
+    width: 100%;
+}
+
+#nav-sidebar th,
+#nav-sidebar td {
+    padding: 14px 16px !important;
+    background: transparent !important;
+    border-bottom: 1px solid rgba(91, 58, 153, 0.07) !important;
+}
+
+#nav-sidebar tr:last-child th,
+#nav-sidebar tr:last-child td {
+    border-bottom: 0 !important;
+}
+
+#nav-sidebar th a {
+    color: var(--pm-purple) !important;
+    font-size: 14px;
+    font-weight: 650;
+    line-height: 1.3;
+    text-decoration: none;
+}
+
+#nav-sidebar .addlink {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 0 10px 0 28px;
+    border-radius: 999px;
+    color: #3f2878 !important;
+    background: rgba(77, 165, 163, 0.1) !important;
+    font-size: 12px;
+    font-weight: 700 !important;
+    text-decoration: none;
+}
+
+#nav-sidebar .addlink::before {
+    content: "+";
+    position: absolute;
+    left: 10px;
+    color: #3f8f45;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+#nav-sidebar #nav-filter {
+    width: 100%;
+    min-height: 42px;
+    margin: 0 0 14px;
+    padding: 0 16px !important;
+    border: 1px solid rgba(91, 58, 153, 0.14) !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.94) !important;
+    color: var(--pm-ink) !important;
+    font-size: 14px !important;
+    box-shadow: 0 10px 24px rgba(22, 30, 54, 0.06);
+}
+
+#nav-sidebar #nav-filter::placeholder {
+    color: #8b93a6;
+}
+
+.toggle-nav-sidebar {
+    top: 50%;
+    width: 34px;
+    min-width: 34px;
+    height: 74px;
+    border: 0 !important;
+    border-radius: 0 18px 18px 0 !important;
+    background: linear-gradient(135deg, var(--pm-purple), var(--pm-teal)) !important;
+    color: #fff !important;
+    box-shadow: 0 12px 26px rgba(91, 58, 153, 0.22);
+}
+
+.pascal-admin-app-page {
+    display: grid;
+    gap: 22px;
+}
+
+.pascal-admin-app-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 24px;
+    padding: clamp(24px, 3vw, 38px);
+    border: 1px solid rgba(91, 58, 153, 0.1);
+    border-radius: 30px;
+    background:
+        radial-gradient(circle at 92% 12%, rgba(91, 58, 153, 0.12), transparent 34%),
+        radial-gradient(circle at 8% 95%, rgba(77, 165, 163, 0.12), transparent 32%),
+        rgba(255, 255, 255, 0.92);
+    box-shadow: 0 16px 42px rgba(22, 30, 54, 0.08);
+}
+
+.pascal-admin-app-hero h1 {
+    display: block !important;
+    margin: 14px 0 0 !important;
+    color: #3f2878 !important;
+    font-size: clamp(30px, 3.4vw, 48px) !important;
+    font-weight: 650 !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.05em !important;
+}
+
+.pascal-admin-app-hero h1::after {
+    display: none !important;
+}
+
+.pascal-admin-app-hero p {
+    max-width: 720px;
+    margin: 14px 0 0;
+    color: #667085;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.pascal-admin-model-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 16px;
+}
+
+.pascal-admin-model-card {
+    display: grid;
+    gap: 22px;
+    min-height: 210px;
+    padding: 22px;
+    border: 1px solid rgba(91, 58, 153, 0.1);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 14px 36px rgba(22, 30, 54, 0.075);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.pascal-admin-model-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(77, 165, 163, 0.26);
+    box-shadow: 0 22px 50px rgba(22, 30, 54, 0.12);
+}
+
+.pascal-admin-model-card h2 {
+    margin: 14px 0 0;
+    color: #2f1f62;
+    font-size: 24px;
+    font-weight: 650;
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+}
+
+.pascal-admin-model-card h2 a {
+    color: inherit !important;
+    text-decoration: none;
+}
+
+.pascal-admin-model-card p {
+    margin: 12px 0 0;
+    color: #667085;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.pascal-admin-model-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 10px;
+    margin-top: auto;
+}
+
+#content-main > p,
+#content-main > h2,
+#content-main > ol,
+#content-main > ul {
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#content-main > p,
+#content-main > ol,
+#content-main > ul {
+    padding: 18px 22px;
+    border: 1px solid rgba(91, 58, 153, 0.1);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.84);
+    box-shadow: 0 12px 30px rgba(22, 30, 54, 0.06);
+}
+
+#toolbar {
+    margin: 0 0 18px !important;
+    padding: 16px 18px !important;
+}
+
+#toolbar form {
+    flex-wrap: wrap;
+}
+
+#toolbar label {
+    margin: 0 6px 0 0;
+    color: var(--pm-purple-dark);
+    font-size: 14px;
+    font-weight: 650;
+}
+
+#toolbar form input[type="search"],
+#toolbar #searchbar {
+    min-width: min(460px, 100%);
+    min-height: 44px;
+    padding: 0 16px !important;
+}
+
+#changelist-search input[type="submit"],
+#toolbar input[type="submit"] {
+    min-height: 42px;
+    padding: 0 18px !important;
+}
+
+.object-tools {
+    margin: 0 0 18px !important;
+    justify-content: flex-end;
+}
+
+.object-tools a,
+.object-tools a:link,
+.object-tools a:visited {
+    min-height: 42px !important;
+    padding: 0 18px !important;
+    font-size: 14px !important;
+    font-weight: 650 !important;
+}
+
+.submit-row {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.submit-row input,
+.submit-row a,
+input[type="submit"],
+button,
+.button,
+a.button {
+    min-height: 40px;
+    padding: 0 17px !important;
+    font-size: 14px !important;
+    font-weight: 650 !important;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+    align-items: start;
+    gap: 18px;
+}
+
+.aligned label {
+    width: auto !important;
+    margin: 0 !important;
+}
+
+.aligned .form-row input,
+.aligned .form-row textarea,
+.aligned .form-row select,
+.aligned .form-row .readonly {
+    max-width: 760px;
+}
+
+@media (max-width: 1024px) {
+    #nav-sidebar {
+        width: min(310px, 86vw);
+    }
+
+    .pascal-admin-app-hero {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 720px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .pascal-admin-model-card {
+        min-height: auto;
+    }
+}
+
+/* Universal changelist search fix */
+#toolbar,
+#changelist-search {
+    overflow: visible !important;
+}
+
+#toolbar {
+    max-width: 100%;
+    margin: 0 0 22px !important;
+    padding: 14px !important;
+    border-radius: 26px !important;
+}
+
+#toolbar form,
+#changelist-search {
+    margin: 0 !important;
+}
+
+#toolbar form > div,
+#changelist-search > div {
+    position: relative;
+    display: grid !important;
+    grid-template-columns: minmax(240px, 520px) auto;
+    align-items: center;
+    justify-content: start;
+    gap: 12px;
+    width: 100%;
+}
+
+#toolbar label {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    z-index: 2;
+    display: grid !important;
+    place-items: center;
+    width: 22px !important;
+    height: 22px !important;
+    margin: 0 !important;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+#toolbar label img {
+    width: 18px !important;
+    height: 18px !important;
+    opacity: 0.46;
+    filter: grayscale(1);
+}
+
+#toolbar #searchbar,
+#toolbar form input[type="search"],
+#toolbar form input[type="text"] {
+    box-sizing: border-box;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 520px !important;
+    height: 48px !important;
+    min-height: 48px !important;
+    margin: 0 !important;
+    padding: 0 18px 0 48px !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    border: 1px solid rgba(91, 58, 153, 0.14) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 10px 24px rgba(22, 30, 54, 0.055) !important;
+    color: var(--pm-ink) !important;
+    font-size: 15px !important;
+    line-height: 48px !important;
+}
+
+#toolbar #searchbar:focus {
+    border-color: rgba(77, 165, 163, 0.55) !important;
+    box-shadow: 0 0 0 4px rgba(77, 165, 163, 0.12), 0 12px 26px rgba(22, 30, 54, 0.07) !important;
+}
+
+#toolbar input[type="submit"],
+#changelist-search input[type="submit"] {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: auto !important;
+    min-width: 104px !important;
+    height: 48px !important;
+    min-height: 48px !important;
+    margin: 0 !important;
+    padding: 0 24px !important;
+    border-radius: 999px !important;
+    background: linear-gradient(135deg, var(--pm-purple), var(--pm-teal)) !important;
+    color: #fff !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    box-shadow: 0 12px 24px rgba(91, 58, 153, 0.18) !important;
+}
+
+#toolbar input[type="submit"]:hover,
+#changelist-search input[type="submit"]:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 16px 30px rgba(77, 165, 163, 0.2) !important;
+}
+
+@media (max-width: 720px) {
+    #toolbar form > div,
+    #changelist-search > div {
+        grid-template-columns: 1fr;
+    }
+
+    #toolbar #searchbar,
+    #toolbar form input[type="search"],
+    #toolbar form input[type="text"] {
+        max-width: none !important;
+    }
+}
+
+/* Wide permission/group selector */
+.form-row:has(.selector) {
+    display: block !important;
+}
+
+.form-row:has(.selector) > div {
+    display: block !important;
+}
+
+.form-row:has(.selector) label {
+    display: block !important;
+    margin: 0 0 14px !important;
+    color: var(--pm-purple-dark) !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+}
+
+.selector {
+    display: grid !important;
+    grid-template-columns: minmax(360px, 1fr) 72px minmax(360px, 1fr);
+    align-items: start;
+    gap: 22px;
+    width: min(100%, 1120px) !important;
+    max-width: 1120px !important;
+    margin: 8px 0 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    overflow: visible !important;
+}
+
+.selector-available,
+.selector-chosen {
+    width: auto !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    overflow: hidden;
+    border: 1px solid rgba(91, 58, 153, 0.12) !important;
+    border-radius: 24px !important;
+    background: rgba(255, 255, 255, 0.94) !important;
+    box-shadow: 0 16px 38px rgba(22, 30, 54, 0.08) !important;
+}
+
+.selector-available h2,
+.selector-chosen h2 {
+    margin: 0 !important;
+    padding: 18px 20px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: linear-gradient(135deg, var(--pm-purple), var(--pm-teal)) !important;
+    color: #fff !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+}
+
+.selector-available h2 + p,
+.selector-chosen h2 + p,
+.selector .help,
+.selector p.help {
+    margin: 0 !important;
+    padding: 12px 20px 16px !important;
+    color: rgba(255, 255, 255, 0.92) !important;
+    background: linear-gradient(135deg, var(--pm-purple), var(--pm-teal)) !important;
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+}
+
+.selector-filter {
+    position: relative;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+    margin: 0 !important;
+    padding: 16px 18px !important;
+    border: 0 !important;
+    background: rgba(245, 246, 250, 0.82) !important;
+}
+
+.selector-filter label {
+    position: absolute;
+    left: 34px;
+    top: 50%;
+    z-index: 2;
+    display: grid !important;
+    place-items: center;
+    width: 22px !important;
+    height: 22px !important;
+    margin: 0 !important;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.selector-filter label img {
+    width: 18px !important;
+    height: 18px !important;
+    opacity: 0.5;
+    filter: grayscale(1);
+}
+
+.selector-filter input {
+    box-sizing: border-box;
+    width: 100% !important;
+    max-width: none !important;
+    height: 46px !important;
+    min-height: 46px !important;
+    margin: 0 !important;
+    padding: 0 16px 0 46px !important;
+    border-radius: 18px !important;
+    background: #fff !important;
+    color: var(--pm-ink) !important;
+    font-size: 14px !important;
+}
+
+.selector select {
+    box-sizing: border-box;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 360px !important;
+    margin: 0 !important;
+    padding: 12px !important;
+    border: 0 !important;
+    border-top: 1px solid rgba(91, 58, 153, 0.08) !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+    color: var(--pm-ink) !important;
+    font-size: 14px !important;
+    line-height: 1.45 !important;
+    box-shadow: none !important;
+}
+
+.selector select option {
+    padding: 8px 10px;
+    color: var(--pm-ink);
+    background: #fff;
+}
+
+.selector-chooser {
+    display: grid !important;
+    align-self: center;
+    gap: 12px;
+    width: 72px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    list-style: none !important;
+}
+
+.selector-chooser li {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.selector-add,
+.selector-remove {
+    display: grid !important;
+    place-items: center;
+    width: 56px !important;
+    height: 56px !important;
+    margin: 0 auto !important;
+    border-radius: 18px !important;
+    background: linear-gradient(135deg, var(--pm-purple), var(--pm-teal)) !important;
+    color: #fff !important;
+    box-shadow: 0 14px 28px rgba(91, 58, 153, 0.2);
+    opacity: 1 !important;
+    text-indent: 0 !important;
+    font-size: 0 !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.selector-add::before {
+    content: "→";
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.selector-remove::before {
+    content: "←";
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.selector-add:hover,
+.selector-remove:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 34px rgba(77, 165, 163, 0.24);
+}
+
+.selector-chooseall,
+.selector-clearall {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: max-content !important;
+    min-height: 42px;
+    margin: 16px auto 18px !important;
+    padding: 0 20px !important;
+    border-radius: 999px !important;
+    background: linear-gradient(135deg, var(--pm-purple), var(--pm-teal)) !important;
+    color: #fff !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    box-shadow: 0 12px 24px rgba(91, 58, 153, 0.16);
+}
+
+.selector-clearall {
+    background: linear-gradient(135deg, #9f96c8, #9bcfce) !important;
+}
+
+.selector .selector-available > a,
+.selector .selector-chosen > a {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.selector .help-icon,
+.selector .selector-filter + .help {
+    display: none !important;
+}
+
+@media (max-width: 1180px) {
+    .selector {
+        grid-template-columns: 1fr;
+    }
+
+    .selector-chooser {
+        grid-template-columns: repeat(2, 56px);
+        justify-content: center;
+        width: 100% !important;
+    }
+
+    .selector-add::before {
+        content: "↓";
+    }
+
+    .selector-remove::before {
+        content: "↑";
+    }
+}
+
+/* Clean compact dashboard home */
+.pascal-admin-home-compact {
+    gap: 20px;
+}
+
+.pascal-admin-pulse-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.pascal-admin-focus-card,
+.pascal-admin-log-panel {
+    border: 1px solid rgba(91, 58, 153, 0.1);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 14px 36px rgba(22, 30, 54, 0.075);
+}
+
+.pascal-admin-focus-card {
+    display: grid;
+    align-content: start;
+    gap: 12px;
+    min-height: 210px;
+    padding: 24px;
+}
+
+.pascal-admin-focus-card-soft {
+    background:
+        radial-gradient(circle at 100% 0, rgba(77, 165, 163, 0.14), transparent 38%),
+        rgba(255, 255, 255, 0.88);
+}
+
+.pascal-admin-focus-card h2 {
+    margin: 0;
+    color: #2f1f62;
+    font-size: 24px;
+    font-weight: 650;
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+}
+
+.pascal-admin-focus-card p {
+    margin: 0;
+    color: #667085;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.pascal-admin-inline-link {
+    align-self: end;
+    width: max-content;
+    margin-top: 4px;
+    color: var(--pm-purple-dark) !important;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.pascal-admin-inline-link::after {
+    content: " →";
+    color: var(--pm-teal);
+}
+
+.pascal-admin-log-panel {
+    display: grid;
+    gap: 16px;
+    padding: 24px;
+}
+
+.pascal-admin-log-list {
+    display: grid;
+    gap: 10px;
+}
+
+.pascal-admin-log-row {
+    display: grid;
+    grid-template-columns: 12px minmax(0, 1fr);
+    align-items: center;
+    gap: 14px;
+    min-height: 58px;
+    padding: 12px 14px;
+    border: 1px solid rgba(91, 58, 153, 0.075);
+    border-radius: 16px;
+    background: rgba(245, 246, 250, 0.72);
+}
+
+.pascal-admin-log-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--pm-teal), var(--pm-purple));
+}
+
+.pascal-admin-log-row strong {
+    display: block;
+    overflow: hidden;
+    color: #172033;
+    font-size: 14px;
+    font-weight: 650;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pascal-admin-log-row small {
+    display: block;
+    margin-top: 3px;
+    color: #778095;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Form layout polish */
+.aligned .form-row:not(:has(.selector)) {
+    display: block !important;
+    padding: 20px 24px !important;
+}
+
+.aligned .form-row:not(:has(.selector)) > div,
+.aligned .form-row:not(:has(.selector)) > .flex-container {
+    display: grid !important;
+    grid-template-columns: minmax(180px, 240px) minmax(0, 760px);
+    align-items: start;
+    gap: 18px;
+    width: 100%;
+}
+
+.aligned .form-row:not(:has(.selector)) label {
+    padding-top: 12px !important;
+    color: var(--pm-purple-dark) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+}
+
+.aligned .form-row:not(:has(.selector)) .checkbox-row {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+}
+
+.aligned .form-row input[type="checkbox"] {
+    width: 18px !important;
+    height: 18px !important;
+    min-height: 18px !important;
+    accent-color: var(--pm-purple);
+}
+
+.related-widget-wrapper {
+    display: grid !important;
+    grid-template-columns: minmax(240px, 560px) repeat(3, 40px);
+    align-items: center;
+    gap: 10px;
+    max-width: 720px;
+}
+
+.related-widget-wrapper select,
+.related-widget-wrapper input {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.related-widget-wrapper-link {
+    display: grid !important;
+    place-items: center;
+    width: 40px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    padding: 0 !important;
+    border: 1px solid rgba(91, 58, 153, 0.12) !important;
+    border-radius: 14px !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    box-shadow: 0 8px 18px rgba(22, 30, 54, 0.06) !important;
+}
+
+.related-widget-wrapper-link img {
+    width: 18px !important;
+    height: 18px !important;
+    opacity: 0.72;
+}
+
+textarea,
+.vLargeTextField {
+    box-sizing: border-box;
+    width: min(100%, 760px) !important;
+    max-width: 760px !important;
+    min-height: 180px !important;
+    padding: 16px !important;
+    line-height: 1.55 !important;
+    resize: vertical;
+}
+
+select {
+    min-height: 46px !important;
+    padding: 0 42px 0 16px !important;
+}
+
+.submit-row {
+    margin-top: 24px !important;
+}
+
+@media (max-width: 1180px) {
+    .pascal-admin-pulse-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 860px) {
+    .aligned .form-row:not(:has(.selector)) > div,
+    .aligned .form-row:not(:has(.selector)) > .flex-container,
+    .related-widget-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .related-widget-wrapper-link {
+        display: inline-grid !important;
+    }
 }

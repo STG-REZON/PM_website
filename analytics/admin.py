@@ -11,7 +11,6 @@ from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.urls import path
 from django.utils import timezone
-from django.utils.safestring import mark_safe
 
 from .models import ChatAnalytics, PageView, SearchQuery, UserEvent, UserSession
 
@@ -37,7 +36,8 @@ def analytics_dashboard(request):
     popular_searches = searches_30.values('query').annotate(count=Count('id')).order_by('-count')[:10]
     zero_searches = searches_30.filter(results_count=0).values('query').annotate(count=Count('id')).order_by('-count')[:10]
     popular_events = events_30.values('event_type', 'event_label').annotate(count=Count('id')).order_by('-count')[:12]
-    search_result_clicks = events_30.filter(event_type='search_result_click').values('event_label', 'target_url').annotate(count=Count('id')).order_by('-count')[:10]
+    search_clicks_30 = events_30.filter(event_type='search_result_click')
+    search_result_clicks = search_clicks_30.values('event_label', 'target_url').annotate(count=Count('id')).order_by('-count')[:10]
     chat_sources = chats_30.values('response_source').annotate(count=Count('id')).order_by('-count')
 
     page_groups = group_pages(views_30)
@@ -48,7 +48,9 @@ def analytics_dashboard(request):
     avg_response_time = chats_30.aggregate(value=Avg('response_time'))['value'] or 0
     zero_search_count = searches_30.filter(results_count=0).count()
     total_searches_30 = searches_30.count()
+    search_clicks_count = search_clicks_30.count()
     zero_search_rate = round((zero_search_count / total_searches_30) * 100, 1) if total_searches_30 else 0
+    search_click_rate = round((search_clicks_count / total_searches_30) * 100, 1) if total_searches_30 else 0
 
     context = {
         'title': 'Панель аналитики',
@@ -80,6 +82,8 @@ def analytics_dashboard(request):
         'avg_response_time': round(avg_response_time, 2),
         'zero_search_count': zero_search_count,
         'zero_search_rate': zero_search_rate,
+        'search_clicks_count': search_clicks_count,
+        'search_click_rate': search_click_rate,
     }
 
     return TemplateResponse(request, 'admin/analytics_dashboard.html', context)
@@ -256,23 +260,6 @@ def get_urls():
 
 admin.site.get_urls = get_urls
 
-original_each_context = admin.site.each_context
-
-
-def each_context(request):
-    context = original_each_context(request)
-    context['analytics_link'] = mark_safe(
-        '<div style="margin: 20px 0; padding: 18px 20px; '
-        'background: linear-gradient(135deg, #5B3A99, #4DA5A3); '
-        'border-radius: 18px; text-align: center; box-shadow: 0 18px 42px rgba(91,58,153,.18);">'
-        '<a href="/admin/analytics-dashboard/" style="color: white; font-weight: 800; '
-        'text-decoration: none; font-size: 16px;">Открыть дашборд аналитики</a>'
-        '</div>'
-    )
-    return context
-
-
-admin.site.each_context = each_context
 admin.site.site_header = 'PASCAL MEDICAL'
 admin.site.site_title = 'PASCAL MEDICAL'
 admin.site.index_title = 'Панель управления'

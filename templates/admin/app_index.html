@@ -1,0 +1,55 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">Панель</a> &rsaquo; {{ title }}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="pascal-admin-app-page">
+    <section class="pascal-admin-app-hero">
+        <div>
+            <span class="pascal-admin-eyebrow">Раздел управления</span>
+            <h1>{{ title }}</h1>
+            <p>Выберите нужный подраздел, добавьте новую запись или откройте список для редактирования.</p>
+        </div>
+        <a href="{% url 'admin:index' %}" class="pascal-admin-secondary-action">Вернуться в панель</a>
+    </section>
+
+    {% if app_list %}
+        {% for app in app_list %}
+            <section class="pascal-admin-model-grid" aria-label="{{ app.name }}">
+                {% for model in app.models %}
+                    <article class="pascal-admin-model-card model-{{ model.object_name|lower }}">
+                        <div class="pascal-admin-model-card-body">
+                            <span class="pascal-admin-card-label">{{ app.name }}</span>
+                            <h2>
+                                {% if model.admin_url %}
+                                    <a href="{{ model.admin_url }}">{{ model.name }}</a>
+                                {% else %}
+                                    {{ model.name }}
+                                {% endif %}
+                            </h2>
+                            <p>Управление записями этого раздела: просмотр, поиск и редактирование доступных данных.</p>
+                        </div>
+                        <div class="pascal-admin-model-card-actions">
+                            {% if model.add_url %}
+                                <a href="{{ model.add_url }}" class="pascal-admin-primary-action">Добавить</a>
+                            {% endif %}
+                            {% if model.admin_url and model.view_only %}
+                                <a href="{{ model.admin_url }}" class="pascal-admin-secondary-action">Смотреть</a>
+                            {% elif model.admin_url %}
+                                <a href="{{ model.admin_url }}" class="pascal-admin-secondary-action">Открыть</a>
+                            {% endif %}
+                        </div>
+                    </article>
+                {% endfor %}
+            </section>
+        {% endfor %}
+    {% else %}
+        <p class="pascal-admin-empty">В этом разделе пока нет доступных подразделов.</p>
+    {% endif %}
+</div>
+{% endblock %}

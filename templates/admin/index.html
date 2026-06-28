@@ -1,0 +1,69 @@
+{% extends "admin/base_site.html" %}
+{% load i18n log %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+{% get_admin_log 6 as admin_log for_user user %}
+
+<div class="pascal-admin-home pascal-admin-home-compact">
+    <section class="pascal-admin-command">
+        <div class="pascal-admin-command-copy">
+            <span class="pascal-admin-eyebrow">PASCAL MEDICAL</span>
+            <h1>Рабочая панель</h1>
+            <p>Короткий центр контроля: аналитика, последние изменения и быстрые действия. Все разделы управления находятся в левом меню.</p>
+        </div>
+        <div class="pascal-admin-command-actions">
+            <a href="{% url 'admin:analytics_dashboard' %}" class="pascal-admin-primary-action">Открыть аналитику</a>
+            <a href="/" target="_blank" rel="noopener noreferrer" class="pascal-admin-secondary-action">Смотреть сайт</a>
+        </div>
+    </section>
+
+    <section class="pascal-admin-pulse-grid">
+        <article class="pascal-admin-focus-card">
+            <span class="pascal-admin-card-label">Что проверить</span>
+            <h2>Поиск и переходы</h2>
+            <p>Оцените запросы без результата и клики из поиска, чтобы понять, где пользователю не хватает контента.</p>
+            <a href="{% url 'admin:analytics_dashboard' %}" class="pascal-admin-inline-link">Перейти к дашборду</a>
+        </article>
+
+        <article class="pascal-admin-focus-card">
+            <span class="pascal-admin-card-label">Контент</span>
+            <h2>Свежесть данных</h2>
+            <p>Перед публикацией проверьте новости, FAQ, документы и контактные данные через левое меню.</p>
+            <a href="/" target="_blank" rel="noopener noreferrer" class="pascal-admin-inline-link">Открыть сайт</a>
+        </article>
+
+        <article class="pascal-admin-focus-card pascal-admin-focus-card-soft">
+            <span class="pascal-admin-card-label">Подсказка</span>
+            <h2>Меньше дублей</h2>
+            <p>Главная панель больше не повторяет список моделей: навигация слева отвечает за разделы, а центр показывает только рабочую сводку.</p>
+        </article>
+    </section>
+
+    <section class="pascal-admin-log-panel">
+        <div class="pascal-admin-section-head">
+            <div>
+                <span>Последние действия</span>
+                <small>Недавние изменения в админке. Если список пустой, значит в текущем аккаунте ещё не было действий.</small>
+            </div>
+        </div>
+
+        {% if admin_log %}
+            <div class="pascal-admin-log-list">
+                {% for entry in admin_log %}
+                    <div class="pascal-admin-log-row">
+                        <span class="pascal-admin-log-dot"></span>
+                        <div>
+                            <strong>{{ entry.object_repr }}</strong>
+                            <small>{{ entry.content_type|capfirst }} · {{ entry.action_time|date:"d.m.Y H:i" }}</small>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="pascal-admin-empty">Пока нет записанных действий.</p>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}
